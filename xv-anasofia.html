@@ -376,55 +376,30 @@ padding-bottom:80px;
 .countdown {
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:18px;
-max-width:800px;
+gap:12px;
+max-width:700px;
 margin:0 auto;
 }
 
 .countdown-item {
 min-width:0;
-padding:28px 15px 24px;
-background:rgba(255,255,255,.7);
-border:1px solid rgba(202,165,91,.55);
-position:relative;
-}
-
-.countdown-item::before {
-content:"✦";
-position:absolute;
-top:-14px;
-left:50%;
-transform:translateX(-50%);
-background:var(--ivory);
-padding:0 14px;
-color:var(--gold);
-font-size:1.4rem;
+padding:24px 10px 20px;
 }
 
 .countdown-number {
-display:block;
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(2.5rem,6vw,4.5rem);
-line-height:1;
-font-weight:600;
-color:var(--navy);
-margin-bottom:14px;
+font-size:clamp(1.8rem,5vw,3rem);
 }
 
 .countdown-label {
-display:block;
-font-size:.68rem;
-letter-spacing:3px;
-text-transform:uppercase;
-font-weight:600;
-color:var(--gold);
+font-size:.6rem;
+letter-spacing:1px;
 }
 
 .calendar-button {
-margin-top:35px;
+margin-top:25px;
 }
-
-/* ================================
+   
+/* ===============================
    PADRES
 ================================ */
 
@@ -1287,22 +1262,21 @@ gap:35px;
 }
 
 .countdown {
-grid-template-columns:repeat(2,1fr);
-gap:30px 18px;
-max-width:400px;
+grid-template-columns:repeat(4,1fr);
+gap:6px;
 }
 
 .countdown-item {
-padding:24px 10px 20px;
+padding:18px 4px;
 }
 
 .countdown-number {
-font-size:3.2rem;
+font-size:1.7rem;
 }
 
 .countdown-label {
-font-size:.6rem;
-letter-spacing:2px;
+font-size:.48rem;
+letter-spacing:.5px;
 }
 
 .padrino-trigger {
