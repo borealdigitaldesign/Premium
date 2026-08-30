@@ -374,52 +374,23 @@ padding-bottom:80px;
 }
 
 .countdown {
-display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:15px;
-max-width:700px;
-margin:45px auto 35px;
+gap:6px;
 }
 
 .countdown-item {
-background:white;
-border:1px solid rgba(202,165,91,.45);
-padding:28px 12px 24px;
-box-shadow:0 15px 35px rgba(7,29,79,.07);
-position:relative;
-}
-
-.countdown-item::before {
-content:"✦";
-position:absolute;
-top:-11px;
-left:50%;
-transform:translateX(-50%);
-color:var(--gold);
-background:#faf6ef;
-padding:0 8px;
-font-size:.9rem;
+min-width:0;
+padding:12px 4px;
 }
 
 .countdown-number {
-display:block;
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(2.5rem,6vw,4.5rem);
-font-weight:600;
-color:var(--navy);
-line-height:1;
+font-size:1.6rem;
 }
 
 .countdown-label {
-display:block;
-margin-top:10px;
-font-size:.62rem;
-letter-spacing:2px;
-text-transform:uppercase;
-color:var(--gold);
-font-weight:600;
+font-size:.48rem;
+letter-spacing:.5px;
 }
-
 .calendar-button {
 margin-top:15px;
 }
