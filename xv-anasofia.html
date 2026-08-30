@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071d4f">
+
 <title>Mis XV Años | Ana Sofía</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -173,6 +177,7 @@ animation-delay:-2s;
 }
 
 @keyframes fly {
+
 0%,100% {
 transform:translate(0,0) rotate(-8deg) scale(1);
 }
@@ -188,6 +193,7 @@ transform:translate(-25px,-90px) rotate(-5deg) scale(.95);
 75% {
 transform:translate(50px,-40px) rotate(15deg) scale(1.05);
 }
+
 }
 
 /* ================================
@@ -226,6 +232,7 @@ animation:musicPulse 1.2s ease-in-out infinite;
 }
 
 @keyframes musicPulse {
+
 0%,100% {
 transform:scale(1);
 }
@@ -233,6 +240,7 @@ transform:scale(1);
 50% {
 transform:scale(1.25);
 }
+
 }
 
 /* ================================
@@ -344,6 +352,7 @@ animation:bounce 2s infinite;
 }
 
 @keyframes bounce {
+
 0%,100% {
 transform:translate(-50%,0);
 }
@@ -351,6 +360,7 @@ transform:translate(-50%,0);
 50% {
 transform:translate(-50%,8px);
 }
+
 }
 
 /* ================================
@@ -374,25 +384,55 @@ padding-bottom:80px;
 }
 
 .countdown {
+display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:6px;
+gap:28px;
+max-width:900px;
+margin:45px auto 0;
 }
 
 .countdown-item {
+position:relative;
+padding:35px 20px 28px;
+background:rgba(255,255,255,.55);
+border:1px solid rgba(202,165,91,.55);
+box-shadow:0 15px 35px rgba(7,29,79,.06);
 min-width:0;
-padding:12px 4px;
+}
+
+.countdown-item::before {
+content:"✦";
+position:absolute;
+top:-16px;
+left:50%;
+transform:translateX(-50%);
+background:var(--cream);
+padding:0 15px;
+color:var(--gold);
+font-size:1.5rem;
 }
 
 .countdown-number {
-font-size:1.6rem;
+display:block;
+font-family:'Cormorant Garamond',serif;
+font-size:clamp(2.8rem,6vw,4.5rem);
+line-height:1;
+font-weight:600;
+color:var(--navy);
 }
 
 .countdown-label {
-font-size:.48rem;
-letter-spacing:.5px;
+display:block;
+margin-top:14px;
+font-size:.72rem;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--gold);
+font-weight:600;
 }
+
 .calendar-button {
-margin-top:15px;
+margin-top:35px;
 }
 
 /* ================================
@@ -1197,13 +1237,42 @@ grid-template-columns:1fr;
 gap:35px;
 }
 
+/* ================================
+   COUNTDOWN MOBILE
+   4 CUADROS EN UNA SOLA FILA
+================================ */
+
 .countdown {
-grid-template-columns:repeat(2,1fr);
-max-width:400px;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-top:35px;
+width:100%;
 }
 
 .countdown-item {
-padding:24px 10px 20px;
+padding:18px 4px 14px;
+}
+
+.countdown-item::before {
+top:-11px;
+font-size:1rem;
+padding:0 7px;
+}
+
+.countdown-number {
+font-size:clamp(2rem,10vw,3rem);
+}
+
+.countdown-label {
+margin-top:9px;
+font-size:.48rem;
+letter-spacing:1.5px;
+}
+
+.calendar-button {
+margin-top:28px;
+padding:14px 20px;
+font-size:.65rem;
 }
 
 .timeline-item {
@@ -1264,6 +1333,7 @@ min-height:350px;
 ================================ */
 
 </style>
+
 </head>
 
 <body>
@@ -1292,11 +1362,22 @@ min-height:350px;
 <div class="butterfly" style="bottom:18%;left:18%;">🦋</div>
 
 <div class="hero-content">
+
 <div class="hero-small">Mis XV Años</div>
+
 <h1>Ana Sofía</h1>
+
 <div class="hero-divider"></div>
-<p>Una noche para soñar,<br>un momento para recordar</p>
-<div class="hero-date">Sábado · 30 de Enero · 2027</div>
+
+<p>
+Una noche para soñar,<br>
+un momento para recordar
+</p>
+
+<div class="hero-date">
+Sábado · 30 de Enero · 2027
+</div>
+
 </div>
 
 <div class="scroll-down">Desliza ↓</div>
@@ -1311,8 +1392,13 @@ min-height:350px;
 
 <div class="container reveal">
 
-<div class="section-label">Hoy dejo atrás mi niñez para dar un paso hacia mi juventud</div>
-<div class="script">¡Vente a mis 15!</div>
+<div class="section-label">
+Hoy dejo atrás mi niñez para dar un paso hacia mi juventud
+</div>
+
+<div class="script">
+¡Vente a mis 15!
+</div>
 
 <div class="gold-line"></div>
 
@@ -1341,8 +1427,13 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 
 <div class="container reveal">
 
-<div class="section-label">La cuenta regresiva ha comenzado</div>
-<h2 class="section-title">Faltan...</h2>
+<div class="section-label">
+La cuenta regresiva ha comenzado
+</div>
+
+<h2 class="section-title">
+Faltan...
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1398,13 +1489,22 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 
 <div class="parents-text">
 
-<div class="section-label">Con la bendición de Dios</div>
-<h2 class="section-title">Y de mis padres</h2>
+<div class="section-label">
+Con la bendición de Dios
+</div>
+
+<h2 class="section-title">
+Y de mis padres
+</h2>
 
 <div class="gold-line"></div>
 
 <h3>Alberto Sánchez</h3>
-<div class="script" style="font-size:2.8rem;">&</div>
+
+<div class="script" style="font-size:2.8rem;">
+&
+</div>
+
 <h3>Erika Salas</h3>
 
 </div>
@@ -1423,8 +1523,13 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 
 <div class="container reveal">
 
-<div class="section-label">Con cariño y gratitud</div>
-<h2 class="section-title">Mis Padrinos</h2>
+<div class="section-label">
+Con cariño y gratitud
+</div>
+
+<h2 class="section-title">
+Mis Padrinos
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1485,8 +1590,13 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 
 <div class="container reveal">
 
-<div class="section-label">La celebración</div>
-<h2 class="section-title">Itinerario</h2>
+<div class="section-label">
+La celebración
+</div>
+
+<h2 class="section-title">
+Itinerario
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1536,8 +1646,13 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 
 <div class="container reveal">
 
-<div class="section-label">Dónde nos vemos</div>
-<h2 class="section-title">Ubicaciones</h2>
+<div class="section-label">
+Dónde nos vemos
+</div>
+
+<h2 class="section-title">
+Ubicaciones
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1551,7 +1666,8 @@ Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de m
 Catedral de Nuestra Señora de la Soledad de Acapulco
 </p>
 
-<button class="button open-map"
+<button
+class="button open-map"
 data-title="La Ceremonia"
 data-address="Catedral de Nuestra Señora de la Soledad de Acapulco"
 data-map="https://maps.google.com/maps?q=Catedral%20de%20Nuestra%20Se%C3%B1ora%20de%20la%20Soledad%20de%20Acapulco&z=16&output=embed"
@@ -1569,7 +1685,8 @@ Ver ubicación
 Salón de Eventos “La Cartuja”
 </p>
 
-<button class="button open-map"
+<button
+class="button open-map"
 data-title="La Recepción"
 data-address="Salón de Eventos La Cartuja"
 data-map="https://maps.google.com/maps?q=Salon%20de%20Eventos%20La%20Cartuja%20Acapulco&z=16&output=embed"
@@ -1595,8 +1712,13 @@ Ver ubicación
 
 <div class="container reveal">
 
-<div class="section-label">Dress Code</div>
-<h2 class="section-title">Código de Vestimenta</h2>
+<div class="section-label">
+Dress Code
+</div>
+
+<h2 class="section-title">
+Código de Vestimenta
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1656,8 +1778,13 @@ Blanco
 
 <div class="container reveal">
 
-<div class="section-label">Mesa de Regalos</div>
-<h2 class="section-title">Un detalle con cariño</h2>
+<div class="section-label">
+Mesa de Regalos
+</div>
+
+<h2 class="section-title">
+Un detalle con cariño
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1667,11 +1794,17 @@ Blanco
 
 <div class="gift-buttons">
 
-<a class="button gold" href="https://www.amazon.com.mx" target="_blank">
+<a
+class="button gold"
+href="https://www.amazon.com.mx"
+target="_blank">
 Amazon
 </a>
 
-<a class="button" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos" target="_blank">
+<a
+class="button"
+href="https://mesaderegalos.liverpool.com.mx/milistaderegalos"
+target="_blank">
 Liverpool
 </a>
 
@@ -1693,8 +1826,13 @@ Realizar transferencia
 
 <div class="container reveal">
 
-<div class="section-label">Una hermosa tradición</div>
-<h2 class="section-title">Lluvia de Sobres</h2>
+<div class="section-label">
+Una hermosa tradición
+</div>
+
+<h2 class="section-title">
+Lluvia de Sobres
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1723,8 +1861,13 @@ La lluvia de sobres es la tradición de regalar dinero en efectivo en un sobre e
 
 <div class="container reveal">
 
-<div class="section-label">Momentos especiales</div>
-<h2 class="section-title">Mi Historia</h2>
+<div class="section-label">
+Momentos especiales
+</div>
+
+<h2 class="section-title">
+Mi Historia
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1752,7 +1895,9 @@ La lluvia de sobres es la tradición de regalar dinero en efectivo en un sobre e
 
 <div class="slider-controls">
 
-<button class="slider-btn" id="prevSlide">←</button>
+<button class="slider-btn" id="prevSlide">
+←
+</button>
 
 <div class="dots">
 <span class="dot active"></span>
@@ -1761,7 +1906,9 @@ La lluvia de sobres es la tradición de regalar dinero en efectivo en un sobre e
 <span class="dot"></span>
 </div>
 
-<button class="slider-btn" id="nextSlide">→</button>
+<button class="slider-btn" id="nextSlide">
+→
+</button>
 
 </div>
 
@@ -1779,8 +1926,13 @@ La lluvia de sobres es la tradición de regalar dinero en efectivo en un sobre e
 
 <div class="container reveal">
 
-<div class="section-label">Confirma tu asistencia</div>
-<h2 class="section-title">¡Tu asistencia me hará muy feliz!</h2>
+<div class="section-label">
+Confirma tu asistencia
+</div>
+
+<h2 class="section-title">
+¡Tu asistencia me hará muy feliz!
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1791,7 +1943,9 @@ Para una mejor organización del evento, te pido respetar el número de pases as
 </p>
 
 <p class="text" style="margin-top:18px;">
-<strong>Confirma tu asistencia antes del 15 de enero de 2027.</strong>
+<strong>
+Confirma tu asistencia antes del 15 de enero de 2027.
+</strong>
 </p>
 
 </div>
@@ -1818,8 +1972,13 @@ title="Confirmación de asistencia">
 
 <div class="container reveal">
 
-<div class="section-label">Estamos para ayudarte</div>
-<h2 class="section-title">¿Alguna duda?</h2>
+<div class="section-label">
+Estamos para ayudarte
+</div>
+
+<h2 class="section-title">
+¿Alguna duda?
+</h2>
 
 <div class="gold-line"></div>
 
@@ -1835,9 +1994,14 @@ Cualquier duda o comentario que tengas sobre mi celebración, por favor no dudes
 <img src="sample/XV_Gallery_07_Mom.png" alt="Quinceañera con mamá">
 </div>
 
-<h3>Confirmar con Mamá</h3>
+<h3>
+Confirmar con Mamá
+</h3>
 
-<a class="button" href="https://wa.link/631flf" target="_blank">
+<a
+class="button"
+href="https://wa.link/631flf"
+target="_blank">
 RSVP Mamá
 </a>
 
@@ -1849,9 +2013,14 @@ RSVP Mamá
 <img src="sample/XV_Gallery_06_Dad.png" alt="Quinceañera con papá">
 </div>
 
-<h3>Confirmar con Papá</h3>
+<h3>
+Confirmar con Papá
+</h3>
 
-<a class="button" href="https://wa.link/631flf" target="_blank">
+<a
+class="button"
+href="https://wa.link/631flf"
+target="_blank">
 RSVP Papá
 </a>
 
@@ -1874,7 +2043,9 @@ RSVP Papá
 
 <div class="final-content reveal">
 
-<h2>¡Te Esperamos!</h2>
+<h2>
+¡Te Esperamos!
+</h2>
 
 <div class="hero-divider"></div>
 
@@ -1892,7 +2063,10 @@ Tu presencia es lo que hará perfecto este momento; me haría muy feliz contar c
 
 <footer class="footer">
 
-<a class="boreal-button" href="https://borealdigitaldesign.github.io/" target="_blank">
+<a
+class="boreal-button"
+href="https://borealdigitaldesign.github.io/"
+target="_blank">
 ✦ Invitación creada por Boreal Digital Design
 </a>
 
@@ -1906,11 +2080,17 @@ Tu presencia es lo que hará perfecto este momento; me haría muy feliz contar c
 
 <div class="modal-box">
 
-<button class="close-modal" id="closeModal">×</button>
+<button class="close-modal" id="closeModal">
+×
+</button>
 
-<div class="section-label">Mesa de Regalos</div>
+<div class="section-label">
+Mesa de Regalos
+</div>
 
-<h3>Realizar Transferencia</h3>
+<h3>
+Realizar Transferencia
+</h3>
 
 <p>
 Si deseas realizar una transferencia como muestra de cariño, puedes utilizar los siguientes datos:
@@ -1938,21 +2118,41 @@ Si deseas realizar una transferencia como muestra de cariño, puedes utilizar lo
 
 <div class="modal-box map-modal-box">
 
-<button class="close-modal" id="closeMapModal">×</button>
+<button class="close-modal" id="closeMapModal">
+×
+</button>
 
 <div class="map-header">
-<h3 id="mapTitle">Ubicación</h3>
+
+<h3 id="mapTitle">
+Ubicación
+</h3>
+
 <p id="mapAddress"></p>
+
 </div>
 
 <div class="map-container">
-<iframe id="mapFrame" src="" loading="lazy" allowfullscreen></iframe>
+
+<iframe
+id="mapFrame"
+src=""
+loading="lazy"
+allowfullscreen>
+</iframe>
+
 </div>
 
 <div class="map-actions">
-<a class="button" id="mapExternalLink" href="#" target="_blank">
+
+<a
+class="button"
+id="mapExternalLink"
+href="#"
+target="_blank">
 Abrir en Google Maps
 </a>
+
 </div>
 
 </div>
@@ -1978,6 +2178,7 @@ entries.forEach(entry => {
 if (entry.isIntersecting) {
 
 entry.target.classList.add('show');
+
 revealObserver.unobserve(entry.target);
 
 }
@@ -2037,6 +2238,7 @@ const eventDate = new Date('January 30, 2027 18:00:00').getTime();
 function updateCountdown() {
 
 const now = new Date().getTime();
+
 const distance = eventDate - now;
 
 if (distance <= 0) {
@@ -2050,30 +2252,54 @@ return;
 
 }
 
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const days = Math.floor(
+distance / (1000 * 60 * 60 * 24)
+);
 
-document.getElementById('days').textContent = String(days).padStart(2,'0');
-document.getElementById('hours').textContent = String(hours).padStart(2,'0');
-document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
-document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+const hours = Math.floor(
+(distance % (1000 * 60 * 60 * 24)) /
+(1000 * 60 * 60)
+);
+
+const minutes = Math.floor(
+(distance % (1000 * 60 * 60)) /
+(1000 * 60)
+);
+
+const seconds = Math.floor(
+(distance % (1000 * 60)) /
+1000
+);
+
+document.getElementById('days').textContent =
+String(days).padStart(2,'0');
+
+document.getElementById('hours').textContent =
+String(hours).padStart(2,'0');
+
+document.getElementById('minutes').textContent =
+String(minutes).padStart(2,'0');
+
+document.getElementById('seconds').textContent =
+String(seconds).padStart(2,'0');
 
 }
 
 updateCountdown();
+
 setInterval(updateCountdown,1000);
 
 /* ================================
    AGREGAR AL CALENDARIO
 ================================ */
 
-const calendarButton = document.getElementById('calendarButton');
+const calendarButton =
+document.getElementById('calendarButton');
 
 calendarButton.addEventListener('click', () => {
 
 const calendarContent = [
+
 'BEGIN:VCALENDAR',
 'VERSION:2.0',
 'BEGIN:VEVENT',
@@ -2084,17 +2310,22 @@ const calendarContent = [
 'LOCATION:Catedral de Nuestra Señora de la Soledad de Acapulco',
 'END:VEVENT',
 'END:VCALENDAR'
+
 ].join('\r\n');
 
-const blob = new Blob([calendarContent],{
+const blob = new Blob(
+[calendarContent],
+{
 type:'text/calendar;charset=utf-8'
-});
+}
+);
 
 const url = URL.createObjectURL(blob);
 
 const link = document.createElement('a');
 
 link.href = url;
+
 link.download = 'Mis_XV_Anios_Ana_Sofia.ics';
 
 document.body.appendChild(link);
@@ -2111,33 +2342,47 @@ URL.revokeObjectURL(url);
    GALERÍA AUTOMÁTICA
 ================================ */
 
-const slides = document.querySelectorAll('.slide');
-const dots = document.querySelectorAll('.dot');
+const slides =
+document.querySelectorAll('.slide');
 
-const nextSlide = document.getElementById('nextSlide');
-const prevSlide = document.getElementById('prevSlide');
+const dots =
+document.querySelectorAll('.dot');
+
+const nextSlide =
+document.getElementById('nextSlide');
+
+const prevSlide =
+document.getElementById('prevSlide');
 
 let currentSlide = 0;
+
 let autoSlide;
 
 function showSlide(index) {
 
 slides[currentSlide].classList.remove('active');
+
 dots[currentSlide].classList.remove('active');
 
-currentSlide = (index + slides.length) % slides.length;
+currentSlide =
+(index + slides.length) % slides.length;
 
 slides[currentSlide].classList.add('active');
+
 dots[currentSlide].classList.add('active');
 
 }
 
 function next() {
+
 showSlide(currentSlide + 1);
+
 }
 
 function previous() {
+
 showSlide(currentSlide - 1);
+
 }
 
 function startAutoSlide() {
@@ -2151,6 +2396,7 @@ autoSlide = setInterval(next,5000);
 nextSlide.addEventListener('click', () => {
 
 next();
+
 startAutoSlide();
 
 });
@@ -2158,6 +2404,7 @@ startAutoSlide();
 prevSlide.addEventListener('click', () => {
 
 previous();
+
 startAutoSlide();
 
 });
@@ -2167,6 +2414,7 @@ dots.forEach((dot,index) => {
 dot.addEventListener('click', () => {
 
 showSlide(index);
+
 startAutoSlide();
 
 });
@@ -2179,9 +2427,14 @@ startAutoSlide();
    MODAL TRANSFERENCIA
 ================================ */
 
-const transferButton = document.getElementById('transferButton');
-const transferModal = document.getElementById('transferModal');
-const closeModal = document.getElementById('closeModal');
+const transferButton =
+document.getElementById('transferButton');
+
+const transferModal =
+document.getElementById('transferModal');
+
+const closeModal =
+document.getElementById('closeModal');
 
 transferButton.addEventListener('click', () => {
 
@@ -2199,12 +2452,17 @@ document.body.style.overflow = '';
 
 }
 
-closeModal.addEventListener('click', closeTransferModal);
+closeModal.addEventListener(
+'click',
+closeTransferModal
+);
 
 transferModal.addEventListener('click', event => {
 
 if (event.target === transferModal) {
+
 closeTransferModal();
+
 }
 
 });
@@ -2213,26 +2471,45 @@ closeTransferModal();
    MODAL UBICACIONES / MAPAS
 ================================ */
 
-const mapModal = document.getElementById('mapModal');
-const mapFrame = document.getElementById('mapFrame');
-const mapTitle = document.getElementById('mapTitle');
-const mapAddress = document.getElementById('mapAddress');
-const mapExternalLink = document.getElementById('mapExternalLink');
-const closeMapModal = document.getElementById('closeMapModal');
-const mapButtons = document.querySelectorAll('.open-map');
+const mapModal =
+document.getElementById('mapModal');
+
+const mapFrame =
+document.getElementById('mapFrame');
+
+const mapTitle =
+document.getElementById('mapTitle');
+
+const mapAddress =
+document.getElementById('mapAddress');
+
+const mapExternalLink =
+document.getElementById('mapExternalLink');
+
+const closeMapModal =
+document.getElementById('closeMapModal');
+
+const mapButtons =
+document.querySelectorAll('.open-map');
 
 mapButtons.forEach(button => {
 
 button.addEventListener('click', () => {
 
 const title = button.dataset.title;
+
 const address = button.dataset.address;
+
 const map = button.dataset.map;
+
 const link = button.dataset.link;
 
 mapTitle.textContent = title;
+
 mapAddress.textContent = address;
+
 mapFrame.src = map;
+
 mapExternalLink.href = link;
 
 mapModal.classList.add('show');
@@ -2248,19 +2525,26 @@ function closeMap() {
 mapModal.classList.remove('show');
 
 setTimeout(() => {
+
 mapFrame.src = '';
+
 },300);
 
 document.body.style.overflow = '';
 
 }
 
-closeMapModal.addEventListener('click', closeMap);
+closeMapModal.addEventListener(
+'click',
+closeMap
+);
 
 mapModal.addEventListener('click', event => {
 
 if (event.target === mapModal) {
+
 closeMap();
+
 }
 
 });
@@ -2274,6 +2558,7 @@ document.addEventListener('keydown', event => {
 if (event.key === 'Escape') {
 
 closeTransferModal();
+
 closeMap();
 
 }
@@ -2283,4 +2568,5 @@ closeMap();
 </script>
 
 </body>
+
 </html>
