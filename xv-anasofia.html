@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ana Sofía | XV Years</title>
+<title>Ana Sofía | XV Invitation</title>
 
 <style>
 
 /* =========================================================
-   RESET
+   RESET / GENERAL
 ========================================================= */
 
 *{
@@ -23,9 +23,14 @@ html{
 body{
   margin:0;
   padding:0;
-  background:#f7f3f7;
+  background:#f7f3ef;
   font-family:Georgia,"Times New Roman",serif;
   overflow-x:hidden;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -38,12 +43,10 @@ body{
   inset:0;
   z-index:10000;
   display:flex;
-  justify-content:center;
   align-items:center;
-  background:#eee7ef;
-  transition:
-    opacity 1s ease,
-    visibility 1s ease;
+  justify-content:center;
+  background:#efe9f1;
+  transition:opacity 1s ease,visibility 1s ease;
 }
 
 .envelope-stage{
@@ -55,9 +58,9 @@ body{
 }
 
 .envelope-base,
-.envelope-glow,
 .envelope-card,
 .envelope-body,
+.envelope-glow,
 .envelope-flap,
 .envelope-seal{
   position:absolute;
@@ -71,33 +74,29 @@ body{
   z-index:1;
 }
 
-.envelope-glow{
-  z-index:2;
-  opacity:0;
-  transform:scale(.92);
-  transition:
-    opacity .7s ease,
-    transform 1.4s ease;
-  pointer-events:none;
-}
-
 .envelope-card{
-  z-index:3;
-  transition:
-    transform 1.5s cubic-bezier(.22,1,.36,1),
-    opacity .8s ease;
+  z-index:2;
 }
 
 .envelope-body{
+  z-index:3;
+}
+
+.envelope-glow{
   z-index:4;
+  pointer-events:none;
+  opacity:0;
+  transform:scale(.96);
+  transition:
+    opacity 1s ease,
+    transform 1.2s ease;
 }
 
 .envelope-flap{
   z-index:5;
   transform-origin:50% 28.2%;
   transform:rotateX(0deg);
-  transition:
-    transform 1.2s cubic-bezier(.4,0,.2,1);
+  transition:transform 1.2s cubic-bezier(.4,0,.2,1);
   backface-visibility:visible;
   -webkit-backface-visibility:visible;
 }
@@ -119,38 +118,13 @@ body{
   }
 
   50%{
-    transform:scale(1.025);
+    transform:scale(1.035);
   }
 
-}
-
-@keyframes glowPulse{
-
-  0%,
-  100%{
-    opacity:.55;
-    transform:scale(1);
-  }
-
-  50%{
-    opacity:1;
-    transform:scale(1.06);
-  }
-
-}
-
-#envelopeIntro.opening .envelope-glow{
-  opacity:1;
-  transform:scale(1.05);
-  animation:glowPulse 1.4s ease-in-out infinite;
 }
 
 #envelopeIntro.opening .envelope-flap{
   transform:rotateX(180deg);
-}
-
-#envelopeIntro.opening .envelope-card{
-  transform:translateY(-14%);
 }
 
 #envelopeIntro.opening .envelope-seal{
@@ -158,6 +132,11 @@ body{
   transform:scale(1.18);
   pointer-events:none;
   animation:none;
+}
+
+#envelopeIntro.opening .envelope-glow{
+  opacity:1;
+  transform:scale(1.04);
 }
 
 #envelopeIntro.hide{
@@ -184,6 +163,18 @@ body{
 
 
 /* =========================================================
+   ALL PAGE IMAGES
+========================================================= */
+
+.page img,
+.special-page img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+
+/* =========================================================
    UNIVERSAL PAGE REVEAL
 ========================================================= */
 
@@ -191,24 +182,13 @@ body{
   opacity:0;
   transform:translateY(35px) scale(.985);
   transition:
-    opacity 1.5s ease,
-    transform 1.5s cubic-bezier(.22,1,.36,1);
+    opacity 1.3s ease,
+    transform 1.3s cubic-bezier(.22,1,.36,1);
 }
 
 .reveal-page.visible{
   opacity:1;
   transform:translateY(0) scale(1);
-}
-
-
-/* =========================================================
-   ALL PAGE IMAGES
-========================================================= */
-
-.page img{
-  width:100%;
-  height:auto;
-  display:block;
 }
 
 
@@ -247,49 +227,38 @@ body{
   display:block;
 }
 
-
-/* =========================================================
-   UNIVERSAL BUTTONS
-========================================================= */
-
-.invitation-button,
-.details-button,
-.hotel-button,
-.back-button,
-.gifts-button,
-.rsvp-button{
-  border:1px solid #9c7aa8;
-  border-radius:25px;
-  background:rgba(255,255,255,.92);
-  color:#755a82;
-  text-decoration:none;
-  text-align:center;
-  cursor:pointer;
-  touch-action:manipulation;
-  -webkit-tap-highlight-color:transparent;
-  box-shadow:0 3px 10px rgba(0,0,0,.10);
-  font-family:Georgia,"Times New Roman",serif;
-}
-
-
-/* =========================================================
-   BIG DAY BUTTONS
-========================================================= */
-
 .big-day-button{
   position:absolute;
   z-index:999;
-  width:140px;
-  padding:8px 7px;
+  width:145px;
+  padding:9px 8px;
+  border:1px solid #9b7a8e;
+  border-radius:25px;
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  text-decoration:none;
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
   font-size:9px;
   letter-spacing:1px;
   line-height:1.2;
+  cursor:pointer;
+  touch-action:manipulation;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+  transition:
+    transform .25s ease,
+    background .25s ease;
+}
+
+.big-day-button:hover{
+  transform:translate(-50%,-50%) translateY(-2px);
+  background:#fff;
 }
 
 .big-day-countdown{
   position:absolute;
   z-index:999;
-  top:18%;
+  top:22%;
   left:50%;
   transform:translate(-50%,-50%);
   width:92%;
@@ -298,7 +267,7 @@ body{
 
 .big-day-countdown-title{
   margin:0 0 10px;
-  color:#755a82;
+  color:#715564;
   font-size:12px;
   letter-spacing:1.4px;
 }
@@ -311,37 +280,37 @@ body{
 }
 
 .big-day-countdown-box{
-  min-width:48px;
-  padding:6px 5px;
-  background:rgba(255,255,255,.82);
-  border:1px solid #bda6c5;
-  border-radius:7px;
+  min-width:50px;
+  padding:7px 5px;
+  background:rgba(255,255,255,.84);
+  border:1px solid #c9aebe;
+  border-radius:8px;
 }
 
 .big-day-countdown-number{
   display:block;
-  font-size:17px;
-  color:#755a82;
+  font-size:18px;
+  color:#715564;
   font-weight:bold;
 }
 
 .big-day-countdown-label{
   display:block;
   margin-top:2px;
+  color:#806f79;
   font-size:7px;
   letter-spacing:.7px;
-  color:#756b78;
   text-transform:uppercase;
 }
 
 .big-day-calendar{
-  top:54%;
+  top:58%;
   left:50%;
   transform:translate(-50%,-50%);
 }
 
 .big-day-details{
-  top:63%;
+  top:91%;
   left:50%;
   transform:translate(-50%,-50%);
 }
@@ -352,18 +321,14 @@ body{
 ========================================================= */
 
 .details-section{
-  position:relative;
-  width:100%;
-  max-width:700px;
-  margin:0 auto;
-  background:#f7f3f7;
-  padding:55px 18px 60px;
+  padding:50px 20px 55px;
+  background:#f7f3ef;
   text-align:center;
 }
 
 .details-title{
   margin:0 0 8px;
-  color:#755a82;
+  color:#715564;
   font-family:
     "Snell Roundhand",
     "Brush Script MT",
@@ -376,18 +341,18 @@ body{
 }
 
 .details-subtitle{
-  margin:0 auto 28px;
-  max-width:470px;
-  color:#756b78;
-  font-size:11px;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
+  margin:0 auto 30px;
+  max-width:480px;
+  color:#806f79;
+  font-size:10px;
+  letter-spacing:1.7px;
   line-height:1.6;
+  text-transform:uppercase;
 }
 
 .details-buttons{
   width:100%;
-  max-width:600px;
+  max-width:540px;
   margin:0 auto;
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -398,25 +363,27 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  min-height:58px;
+  min-height:68px;
   padding:12px 10px;
+  border:1px solid #b998aa;
+  border-radius:28px;
+  background:rgba(255,255,255,.88);
+  color:#715564;
+  text-decoration:none;
   font-size:9px;
   letter-spacing:1px;
   line-height:1.35;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
   transition:
     transform .25s ease,
     background .25s ease,
     box-shadow .25s ease;
 }
 
-.details-button:last-child{
-  grid-column:1/3;
-}
-
 .details-button:hover{
   transform:translateY(-2px);
   background:#fff;
-  box-shadow:0 5px 15px rgba(0,0,0,.12);
+  box-shadow:0 6px 15px rgba(0,0,0,.11);
 }
 
 .details-button:active{
@@ -441,42 +408,61 @@ body{
   display:block;
 }
 
-.gifts-button{
+.gifts-rsvp-button{
   position:absolute;
   z-index:999;
-  width:145px;
+  width:150px;
   padding:8px 7px;
+  border:1px solid #9b7a8e;
+  border-radius:25px;
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  text-decoration:none;
+  text-align:center;
+  font-family:Georgia,"Times New Roman",serif;
   font-size:8px;
-  letter-spacing:.9px;
+  letter-spacing:.8px;
+  line-height:1.2;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+  transition:
+    transform .25s ease,
+    background .25s ease;
 }
 
-.gifts-registry{
-  top:43%;
-  left:32%;
-  transform:translate(-50%,-50%);
+.gifts-rsvp-button:hover{
+  background:#fff;
 }
 
-.gifts-bank{
-  top:43%;
-  left:68%;
-  transform:translate(-50%,-50%);
-}
+/* ADJUST POSITIONS HERE */
 
-.gifts-email{
-  top:79%;
-  left:24%;
-  transform:translate(-50%,-50%);
-}
-
-.gifts-text{
-  top:79%;
+.gift-registry{
+  top:34%;
   left:50%;
   transform:translate(-50%,-50%);
 }
 
-.gifts-form{
-  top:79%;
-  left:76%;
+.gift-bank{
+  top:42%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.rsvp-email{
+  top:68%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.rsvp-text{
+  top:76%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+.rsvp-form{
+  top:90%;
+  left:50%;
   transform:translate(-50%,-50%);
 }
 
@@ -485,15 +471,15 @@ body{
    A FEW NOTES
 ========================================================= */
 
-.wedding-notes-section{
-  background:#f7f3f7;
-  padding:48px 18px 52px;
+.notes-section{
+  background:#f7f3ef;
+  padding:45px 18px 50px;
   text-align:center;
 }
 
-.wedding-notes-title{
-  margin:0 0 7px;
-  color:#755a82;
+.notes-title{
+  margin:0 0 8px;
+  color:#715564;
   font-family:
     "Snell Roundhand",
     "Brush Script MT",
@@ -505,56 +491,53 @@ body{
   line-height:1.1;
 }
 
-.wedding-notes-subtitle{
+.notes-subtitle{
   margin:0 auto 27px;
   max-width:480px;
-  color:#756b78;
-  font-size:11px;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
+  color:#806f79;
+  font-size:10px;
+  letter-spacing:1.5px;
   line-height:1.6;
+  text-transform:uppercase;
 }
 
-.wedding-notes-buttons{
+.notes-buttons{
   width:100%;
-  max-width:480px;
+  max-width:470px;
   margin:0 auto;
   display:flex;
   justify-content:center;
-  align-items:stretch;
   gap:12px;
 }
 
-.wedding-note-button{
+.note-button{
   flex:1;
-  min-height:68px;
+  min-height:76px;
   padding:12px 8px;
-  border:1px solid #9c7aa8;
+  border:1px solid #b998aa;
   border-radius:28px;
-  background:rgba(255,255,255,.92);
-  color:#755a82;
+  background:rgba(255,255,255,.90);
+  color:#715564;
   font-family:Georgia,"Times New Roman",serif;
   font-size:9px;
-  letter-spacing:1px;
-  line-height:1.35;
+  letter-spacing:.9px;
+  line-height:1.4;
   cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,.09);
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
   transition:
     transform .25s ease,
-    background .25s ease,
-    box-shadow .25s ease;
+    background .25s ease;
 }
 
-.wedding-note-button:hover{
+.note-button:hover{
   transform:translateY(-2px);
   background:#fff;
-  box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
-.wedding-note-button span{
+.note-button span{
   display:block;
-  margin-bottom:4px;
-  font-size:18px;
+  margin-bottom:5px;
+  font-size:20px;
 }
 
 
@@ -578,182 +561,21 @@ body{
 .online-rsvp-button{
   position:absolute;
   z-index:999;
-  width:180px;
-  padding:9px 10px;
-  font-size:9px;
-  letter-spacing:1px;
-  top:74%;
+  top:82%;
   left:50%;
   transform:translate(-50%,-50%);
-}
-
-
-/* =========================================================
-   TALLY
-========================================================= */
-
-.tally-section{
-  background:#f7f3f7;
-  padding:30px 15px 45px;
-  text-align:center;
-}
-
-.tally-title{
-  margin:0 0 22px;
-  color:#755a82;
-  font-family:
-    "Snell Roundhand",
-    "Brush Script MT",
-    "Segoe Script",
-    "Lucida Handwriting",
-    cursive;
-  font-size:36px;
-  font-weight:normal;
-}
-
-.tally-card{
-  position:relative;
-  width:92%;
-  max-width:426px;
-  margin:0 auto;
-  padding:6px;
-  background:rgba(255,255,255,.82);
-  border:1px solid #bda6c5;
-  border-radius:18px;
-  box-shadow:0 5px 18px rgba(117,90,130,.10);
-  overflow:hidden;
-}
-
-.tally-card iframe{
-  width:92%;
-  height:550px;
-  border:none;
-  display:block;
-  margin:0 auto;
-  border-radius:12px;
-}
-
-
-/* =========================================================
-   NOTE MODALS
-========================================================= */
-
-.note-modal{
-  position:fixed;
-  inset:0;
-  z-index:31000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(48,39,52,.58);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:
-    opacity .35s ease,
-    visibility .35s ease;
-}
-
-.note-modal.active{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-}
-
-.note-modal-card{
-  position:relative;
-  width:min(92vw,540px);
-  max-height:88vh;
-  overflow:auto;
-  padding:45px 30px 32px;
-  background:#fdfaff;
-  border:1px solid #bda6c5;
+  width:175px;
+  padding:10px 10px;
+  border:1px solid #9b7a8e;
   border-radius:28px;
-  box-shadow:0 18px 50px rgba(0,0,0,.25);
-  transform:translateY(25px) scale(.96);
-  transition:
-    transform .45s cubic-bezier(.22,1,.36,1);
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  text-decoration:none;
   text-align:center;
-}
-
-.note-modal.active .note-modal-card{
-  transform:translateY(0) scale(1);
-}
-
-.note-modal-close{
-  position:absolute;
-  top:13px;
-  right:15px;
-  width:40px;
-  height:40px;
-  border:none;
-  background:rgba(253,250,255,.9);
-  color:#755a82;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:29px;
-  line-height:38px;
+  font-size:9px;
+  letter-spacing:1px;
   cursor:pointer;
-  border-radius:50%;
-}
-
-.note-modal-icon{
-  width:62px;
-  height:62px;
-  margin:0 auto 13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border:1px solid #c9b3d0;
-  border-radius:50%;
-  background:#f2ebf4;
-  font-size:28px;
-}
-
-.note-modal-title{
-  margin:0 0 15px;
-  color:#755a82;
-  font-family:
-    "Snell Roundhand",
-    "Brush Script MT",
-    "Segoe Script",
-    "Lucida Handwriting",
-    cursive;
-  font-size:34px;
-  font-weight:normal;
-  line-height:1.15;
-}
-
-.note-modal-text{
-  margin:0 auto;
-  max-width:430px;
-  color:#756b78;
-  font-size:15px;
-  line-height:1.7;
-}
-
-
-/* =========================================================
-   GIFTS MODAL
-========================================================= */
-
-.bank-details{
-  margin:20px auto 0;
-  max-width:390px;
-  padding:18px;
-  border:1px solid #c9b3d0;
-  border-radius:16px;
-  background:#f6f0f7;
-  color:#756b78;
-  text-align:left;
-  font-size:13px;
-  line-height:1.8;
-}
-
-.bank-details strong{
-  color:#755a82;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
 }
 
 
@@ -765,22 +587,22 @@ body{
   display:none;
   width:100%;
   min-height:100vh;
-  background:#f7f3f7;
-  text-align:center;
   padding-bottom:35px;
+  background:#f7f3ef;
+  text-align:center;
   opacity:0;
 }
 
 .special-page.active{
   display:block;
-  animation:specialPageEnter 1.2s cubic-bezier(.22,1,.36,1) forwards;
+  animation:specialPageEnter 1s cubic-bezier(.22,1,.36,1) forwards;
 }
 
 @keyframes specialPageEnter{
 
   from{
     opacity:0;
-    transform:translateY(35px) scale(.985);
+    transform:translateY(30px) scale(.985);
   }
 
   to{
@@ -790,127 +612,141 @@ body{
 
 }
 
-.special-page>img{
-  width:100%;
-  max-width:700px;
-  height:auto;
-  display:block;
-  margin:0 auto;
-}
-
-.special-image-page{
+.special-content{
   position:relative;
   width:100%;
   max-width:700px;
   margin:0 auto;
 }
 
-.special-image-page>img{
+.special-content>img{
   width:100%;
   height:auto;
   display:block;
 }
 
+
+/* =========================================================
+   UNIVERSAL BACK BUTTON
+========================================================= */
+
 .back-button{
-  position:absolute;
-  z-index:999;
+  display:block;
   width:175px;
-  padding:9px 10px;
+  margin:25px auto 10px;
+  padding:10px 14px;
+  border:1px solid #9b7a8e;
+  border-radius:28px;
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  text-decoration:none;
+  text-align:center;
   font-size:9px;
-  letter-spacing:1.2px;
-  left:50%;
-  transform:translateX(-50%);
+  letter-spacing:1.3px;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
 }
 
 
 /* =========================================================
-   CHURCH + RECEPTION
+   CHURCH + RECEPTION PAGE
 ========================================================= */
 
+.church-reception-page{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
+}
+
+.church-reception-page>img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+.location-button{
+  position:absolute;
+  z-index:999;
+  width:125px;
+  padding:8px 7px;
+  border:1px solid #9b7a8e;
+  border-radius:25px;
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  font-size:8px;
+  letter-spacing:.9px;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+}
+
+/* ADJUST POSITIONS HERE */
+
 .church-map{
-  top:36%;
+  top:39%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
 .reception-map{
-  top:68%;
-}
-
-.church-reception-back{
-  top:90%;
-}
-
-
-/* =========================================================
-   GODPARENTS
-========================================================= */
-
-.godparents-back{
-  top:91%;
+  top:81%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
 
 /* =========================================================
-   COURT OF HONOR
+   ACCOMMODATIONS PAGE
 ========================================================= */
 
-.court-honor-back{
-  top:91%;
+.accommodations-page{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
 }
 
-
-/* =========================================================
-   EVENT SCHEDULE
-========================================================= */
-
-.timeline-back{
-  top:91%;
+.accommodations-page>img{
+  width:100%;
+  height:auto;
+  display:block;
 }
-
-
-/* =========================================================
-   DRESS CODE
-========================================================= */
-
-.dress-code-back{
-  top:91%;
-}
-
-
-/* =========================================================
-   ACCOMMODATIONS
-========================================================= */
 
 .hotel-button{
   position:absolute;
-  width:125px;
-  padding:8px 9px;
-  font-size:8px;
-  letter-spacing:1px;
   z-index:999;
+  width:130px;
+  padding:8px 7px;
+  border:1px solid #9b7a8e;
+  border-radius:25px;
+  background:rgba(255,255,255,.92);
+  color:#715564;
+  font-size:8px;
+  letter-spacing:.9px;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
 }
 
+/* ADJUST POSITIONS HERE */
+
 .hotel-one{
-  top:37%;
-  left:68%;
+  top:40%;
+  left:50%;
   transform:translate(-50%,-50%);
 }
 
 .hotel-two{
-  top:63%;
-  left:68%;
+  top:73%;
+  left:50%;
   transform:translate(-50%,-50%);
-}
-
-.accommodations-back{
-  top:89%;
 }
 
 
 /* =========================================================
-   MAP MODAL
+   POPUP MODALS - GENERAL
 ========================================================= */
 
-.map-modal{
+.modal{
   position:fixed;
   inset:0;
   z-index:30000;
@@ -918,7 +754,7 @@ body{
   align-items:center;
   justify-content:center;
   padding:20px;
-  background:rgba(48,39,52,.58);
+  background:rgba(45,38,45,.60);
   backdrop-filter:blur(7px);
   -webkit-backdrop-filter:blur(7px);
   opacity:0;
@@ -929,46 +765,152 @@ body{
     visibility .35s ease;
 }
 
-.map-modal.active{
+.modal.active{
   opacity:1;
   visibility:visible;
   pointer-events:auto;
 }
+
+.modal-card{
+  position:relative;
+  width:min(92vw,540px);
+  max-height:88vh;
+  overflow:auto;
+  padding:44px 28px 30px;
+  background:#fdfafd;
+  border:1px solid #c9aebe;
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  transform:translateY(25px) scale(.96);
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
+  text-align:center;
+}
+
+.modal.active .modal-card{
+  transform:translateY(0) scale(1);
+}
+
+.modal-close{
+  position:absolute;
+  top:12px;
+  right:14px;
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.85);
+  color:#715564;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:28px;
+  line-height:38px;
+  cursor:pointer;
+}
+
+.modal-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #d9bfcd;
+  border-radius:50%;
+  background:#f3eaf0;
+  font-size:28px;
+}
+
+.modal-title{
+  margin:0 0 15px;
+  color:#715564;
+  font-family:
+    "Snell Roundhand",
+    "Brush Script MT",
+    "Segoe Script",
+    "Lucida Handwriting",
+    cursive;
+  font-size:34px;
+  font-weight:normal;
+  line-height:1.15;
+}
+
+.modal-text{
+  margin:0 auto;
+  max-width:430px;
+  color:#756973;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.modal-highlight{
+  margin:20px auto 0;
+  padding:15px 18px;
+  max-width:400px;
+  border:1px solid #dfcbd6;
+  border-radius:16px;
+  background:#f8f1f5;
+  color:#715564;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.modal-link{
+  display:block;
+  width:100%;
+  max-width:390px;
+  margin:22px auto 0;
+  padding:13px 16px;
+  border:1px solid #9b7a8e;
+  border-radius:30px;
+  background:#fff;
+  color:#715564;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+
+/* =========================================================
+   BANK DETAILS
+========================================================= */
+
+.bank-details{
+  margin:20px auto 0;
+  max-width:390px;
+  padding:18px;
+  border:1px solid #d9bfcd;
+  border-radius:16px;
+  background:#fbf6f9;
+  color:#756973;
+  text-align:left;
+  font-size:13px;
+  line-height:1.8;
+}
+
+.bank-details strong{
+  color:#715564;
+}
+
+
+/* =========================================================
+   MAP MODAL
+========================================================= */
 
 .map-modal-card{
   position:relative;
   width:min(92vw,620px);
   max-height:90vh;
   overflow:hidden;
-  background:#fdfaff;
-  border:1px solid #bda6c5;
+  background:#fdfafd;
+  border:1px solid #c9aebe;
   border-radius:28px;
   box-shadow:0 18px 50px rgba(0,0,0,.25);
   transform:translateY(25px) scale(.96);
-  transition:
-    transform .45s cubic-bezier(.22,1,.36,1);
+  transition:transform .45s cubic-bezier(.22,1,.36,1);
   text-align:center;
 }
 
-.map-modal.active .map-modal-card{
+.modal.active .map-modal-card{
   transform:translateY(0) scale(1);
-}
-
-.map-modal-close{
-  position:absolute;
-  top:14px;
-  right:16px;
-  z-index:10;
-  width:40px;
-  height:40px;
-  border:none;
-  background:rgba(253,250,255,.9);
-  color:#755a82;
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:30px;
-  line-height:38px;
-  cursor:pointer;
-  border-radius:50%;
 }
 
 .map-preview{
@@ -976,7 +918,7 @@ body{
   height:245px;
   border:none;
   display:block;
-  background:#eee7ef;
+  background:#eee7ec;
 }
 
 .map-modal-content{
@@ -992,24 +934,24 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  border:1px solid #c9b3d0;
+  border:1px solid #d9bfcd;
   border-radius:50%;
-  background:#f2ebf4;
+  background:#f3eaf0;
   font-size:29px;
 }
 
 .map-modal-title{
   margin:0 0 10px;
-  color:#755a82;
-  font-size:26px;
+  color:#715564;
+  font-size:25px;
   font-weight:normal;
 }
 
 .map-modal-description{
   margin:0 auto 22px;
   max-width:470px;
-  color:#756b78;
-  font-size:15px;
+  color:#756973;
+  font-size:14px;
   line-height:1.6;
 }
 
@@ -1017,13 +959,45 @@ body{
   display:block;
   width:100%;
   padding:13px 16px;
-  border:1px solid #9c7aa8;
+  border:1px solid #9b7a8e;
   border-radius:30px;
   background:#fff;
-  color:#755a82;
+  color:#715564;
   text-decoration:none;
-  font-size:11px;
-  letter-spacing:1.8px;
+  font-size:10px;
+  letter-spacing:1.6px;
+}
+
+
+/* =========================================================
+   TALLY RSVP
+========================================================= */
+
+.tally-section{
+  padding:30px 15px 45px;
+  background:#f7f3ef;
+  text-align:center;
+}
+
+.tally-card{
+  position:relative;
+  width:92%;
+  max-width:430px;
+  margin:0 auto;
+  padding:6px;
+  background:rgba(255,255,255,.85);
+  border:1px solid #c9aebe;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(113,85,100,.10);
+  overflow:hidden;
+}
+
+.tally-card iframe{
+  width:100%;
+  height:560px;
+  border:none;
+  display:block;
+  border-radius:12px;
 }
 
 
@@ -1035,15 +1009,15 @@ body{
   position:fixed;
   right:18px;
   bottom:22px;
+  z-index:9999;
   width:52px;
   height:52px;
+  border:1px solid rgba(113,85,100,.35);
   border-radius:50%;
-  border:1px solid rgba(117,90,130,.35);
   background:rgba(255,250,255,.92);
-  color:#755a82;
+  color:#715564;
   font-size:21px;
   cursor:pointer;
-  z-index:9999;
   box-shadow:0 4px 14px rgba(0,0,0,.15);
   backdrop-filter:blur(5px);
   -webkit-backdrop-filter:blur(5px);
@@ -1060,19 +1034,13 @@ body{
     width:min(100vw,70.64dvh);
   }
 
-  .big-day-button{
-    width:120px;
-    font-size:8px;
-    padding:7px 5px;
-  }
-
   .big-day-countdown{
     width:95%;
   }
 
   .big-day-countdown-title{
-    font-size:10px;
     margin-bottom:7px;
+    font-size:10px;
   }
 
   .big-day-countdown-boxes{
@@ -1092,17 +1060,23 @@ body{
     font-size:6px;
   }
 
+  .big-day-button{
+    width:125px;
+    padding:8px 6px;
+    font-size:8px;
+  }
+
   .details-section{
-    padding:45px 14px 50px;
+    padding:40px 13px 45px;
   }
 
   .details-title{
-    font-size:36px;
+    font-size:37px;
   }
 
   .details-subtitle{
+    margin-bottom:24px;
     font-size:9px;
-    margin-bottom:23px;
   }
 
   .details-buttons{
@@ -1110,83 +1084,58 @@ body{
   }
 
   .details-button{
-    min-height:56px;
+    min-height:62px;
     padding:10px 6px;
-    font-size:7px;
+    font-size:7.5px;
     letter-spacing:.7px;
   }
 
-  .gifts-button{
-    width:95px;
-    font-size:6px;
-    padding:7px 4px;
+  .gifts-rsvp-button{
+    width:125px;
+    padding:7px 5px;
+    font-size:7px;
   }
 
-  .wedding-notes-section{
-    padding:40px 12px 45px;
+  .notes-section{
+    padding:38px 12px 43px;
   }
 
-  .wedding-notes-title{
+  .notes-title{
     font-size:35px;
   }
 
-  .wedding-notes-subtitle{
+  .notes-subtitle{
+    margin-bottom:22px;
     font-size:9px;
-    letter-spacing:1px;
   }
 
-  .wedding-notes-buttons{
+  .notes-buttons{
     gap:8px;
   }
 
-  .wedding-note-button{
-    min-height:65px;
+  .note-button{
+    min-height:70px;
     padding:10px 5px;
     font-size:7px;
-    letter-spacing:.7px;
   }
 
-  .wedding-note-button span{
-    font-size:16px;
-  }
-
-  .online-rsvp-button{
-    width:155px;
-    font-size:8px;
-  }
-
-  .back-button{
-    width:160px;
-    font-size:8px;
-  }
-
-  .hotel-button{
-    width:100px;
-    font-size:7px;
-  }
-
-  .note-modal{
+  .modal{
     padding:15px;
   }
 
-  .note-modal-card{
+  .modal-card{
     width:94vw;
     max-height:88vh;
-    padding:42px 21px 27px;
+    padding:40px 20px 27px;
     border-radius:24px;
   }
 
-  .note-modal-title{
+  .modal-title{
     font-size:30px;
   }
 
-  .note-modal-text{
-    font-size:14px;
-    line-height:1.6;
-  }
-
-  .map-modal{
-    padding:15px;
+  .modal-text{
+    font-size:13px;
   }
 
   .map-modal-card{
@@ -1203,13 +1152,19 @@ body{
     padding:22px 20px 24px;
   }
 
+  .map-modal-icon{
+    width:56px;
+    height:56px;
+    margin:-49px auto 11px;
+    font-size:26px;
+  }
+
   .map-modal-title{
-    font-size:23px;
+    font-size:22px;
   }
 
   .map-modal-description{
-    font-size:14px;
-    line-height:1.5;
+    font-size:13px;
   }
 
   .tally-section{
@@ -1218,14 +1173,7 @@ body{
   }
 
   .tally-card{
-    width:90%;
-    padding:6px;
-    border-radius:14px;
-  }
-
-  .tally-card iframe{
-    height:550px;
-    border-radius:10px;
+    width:94%;
   }
 
 }
@@ -1262,29 +1210,35 @@ body{
 
   <div class="envelope-stage">
 
+    <!-- BASE -->
     <img class="envelope-base"
-         src="anasofia/base-for-animation.png"
-         alt="Ana Sofía XV invitation">
+         src="base-for-animation.png"
+         alt="Ana Sofía XV Invitation">
 
-    <img class="envelope-glow"
-         src="anasofia/envelope-glow.png"
-         alt="">
-
+    <!-- INVITATION CARD -->
     <img class="envelope-card"
-         src="anasofia/invitation-card.png"
-         alt="Ana Sofía XV invitation">
+         src="invitation-card.png"
+         alt="Ana Sofía XV Invitation">
 
+    <!-- ENVELOPE BODY -->
     <img class="envelope-body"
-         src="anasofia/envelope-body.png"
+         src="envelope-body.png"
          alt="">
 
+    <!-- LIGHT GLOW -->
+    <img class="envelope-glow"
+         src="envelope-glow.png"
+         alt="">
+
+    <!-- FLAP -->
     <img class="envelope-flap"
-         src="anasofia/flap-animation.png"
+         src="flap-animation.png"
          alt="">
 
+    <!-- SEAL -->
     <img class="envelope-seal"
          id="envelopeSeal"
-         src="anasofia/seal-animation.png"
+         src="seal-animation.png"
          alt="Open invitation">
 
   </div>
@@ -1307,8 +1261,8 @@ body{
 
   <div class="page cover-page">
 
-    <img src="anasofia/portada.png"
-         alt="Ana Sofía XV Years">
+    <img src="portada.png"
+         alt="Ana Sofía XV">
 
   </div>
 
@@ -1319,7 +1273,7 @@ body{
 
   <div class="page reveal-target">
 
-    <img src="anasofia/save-date.png"
+    <img src="save-date.png"
          alt="Save the Date">
 
   </div>
@@ -1331,20 +1285,21 @@ body{
 
   <div class="page reveal-target">
 
-    <img src="anasofia/parents.png"
+    <img src="parents.png"
          alt="Parents">
 
   </div>
 
 
   <!-- =====================================================
-       THE BIG DAY
+       BIG DAY
+       COUNTDOWN + CALENDAR + VIEW DETAILS
   ====================================================== -->
 
-  <section class="big-day-section reveal-target"
-           id="big-day">
+  <section id="big-day"
+           class="big-day-section reveal-target">
 
-    <img src="anasofia/big-day.png"
+    <img src="big-day.png"
          alt="The Big Day">
 
 
@@ -1353,7 +1308,7 @@ body{
     <div class="big-day-countdown">
 
       <div class="big-day-countdown-title">
-        THE COUNTDOWN BEGINS
+        COUNTING DOWN TO THE CELEBRATION
       </div>
 
       <div class="big-day-countdown-boxes">
@@ -1417,8 +1372,8 @@ body{
 
     <!-- ADD TO CALENDAR -->
 
-    <a class="invitation-button big-day-button big-day-calendar"
-       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ana%20Sof%C3%ADa%27s%20XV%20Years&dates=20270130/20270131"
+    <a class="big-day-button big-day-calendar"
+       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ana%20Sof%C3%ADa%27s%20XV%20Celebration&dates=20270130/20270131&location=Franklin%2C%20Tennessee"
        target="_blank"
        rel="noopener">
 
@@ -1430,9 +1385,8 @@ body{
     <!-- VIEW DETAILS -->
 
     <a href="#church-reception"
-       class="invitation-button big-day-button big-day-details special-link"
-       data-page="church-reception"
-       data-return="big-day">
+       class="big-day-button big-day-details special-link"
+       data-page="church-reception">
 
       VIEW DETAILS
 
@@ -1445,68 +1399,75 @@ body{
        THE DETAILS
   ====================================================== -->
 
-  <section class="details-section reveal-target"
-           id="details-section">
+  <section id="details-section"
+           class="details-section reveal-target">
 
     <h2 class="details-title">
       The Details
     </h2>
 
     <p class="details-subtitle">
-      A few more details for the celebration
+      Everything you need to know for the celebration
     </p>
 
 
     <div class="details-buttons">
 
+
+      <!-- GODPARENTS -->
+
       <a href="#godparents"
          class="details-button special-link"
-         data-page="godparents"
-         data-return="details-section">
+         data-page="godparents">
 
         MY GODPARENTS
 
       </a>
 
 
+      <!-- COURT OF HONOR -->
+
       <a href="#court-honor"
          class="details-button special-link"
-         data-page="court-honor"
-         data-return="details-section">
+         data-page="court-honor">
 
         MY COURT OF HONOR
 
       </a>
 
 
+      <!-- EVENT SCHEDULE -->
+
       <a href="#timeline"
          class="details-button special-link"
-         data-page="timeline"
-         data-return="details-section">
+         data-page="timeline">
 
         VIEW EVENT SCHEDULE
 
       </a>
 
 
+      <!-- DRESS CODE -->
+
       <a href="#dress-code"
          class="details-button special-link"
-         data-page="dress-code"
-         data-return="details-section">
+         data-page="dress-code">
 
         VIEW DRESS CODE
 
       </a>
 
 
+      <!-- ACCOMMODATIONS -->
+
       <a href="#accommodations"
          class="details-button special-link"
-         data-page="accommodations"
-         data-return="details-section">
+         data-page="accommodations">
 
         VIEW ACCOMMODATIONS
 
       </a>
+
 
     </div>
 
@@ -1517,29 +1478,27 @@ body{
        GIFTS + RSVP
   ====================================================== -->
 
-  <section class="gifts-rsvp-section reveal-target"
-           id="gifts-rsvp">
+  <section class="gifts-rsvp-section reveal-target">
 
-    <img src="anasofia/gifts-rsvp.png"
+    <img src="gifts-rsvp.png"
          alt="Gifts and RSVP">
 
 
     <!-- VIEW REGISTRY -->
 
-    <a class="gifts-button gifts-registry"
-       href="#"
-       target="_blank"
-       rel="noopener">
+    <button type="button"
+            class="gifts-rsvp-button gift-registry"
+            id="openRegistryModal">
 
       VIEW REGISTRY
 
-    </a>
+    </button>
 
 
-    <!-- VIEW BANK DETAILS -->
+    <!-- BANK DETAILS -->
 
     <button type="button"
-            class="gifts-button gifts-bank"
+            class="gifts-rsvp-button gift-bank"
             id="openBankModal">
 
       VIEW BANK DETAILS
@@ -1547,30 +1506,30 @@ body{
     </button>
 
 
-    <!-- RSVP EMAIL -->
+    <!-- RSVP BY EMAIL -->
 
-    <a class="gifts-button gifts-email"
-       href="mailto:">
+    <a href="mailto:REPLACE-EMAIL-HERE"
+       class="gifts-rsvp-button rsvp-email">
 
       RSVP BY EMAIL
 
     </a>
 
 
-    <!-- RSVP TEXT -->
+    <!-- TEXT TO RSVP -->
 
-    <a class="gifts-button gifts-text"
-       href="sms:">
+    <a href="sms:REPLACE-PHONE-HERE"
+       class="gifts-rsvp-button rsvp-text">
 
       TEXT TO RSVP
 
     </a>
 
 
-    <!-- RSVP FORM -->
+    <!-- COMPLETE RSVP FORM -->
 
     <a href="#rsvp-form"
-       class="gifts-button gifts-form">
+       class="gifts-rsvp-button rsvp-form">
 
       COMPLETE RSVP FORM
 
@@ -1583,32 +1542,30 @@ body{
        A FEW NOTES
   ====================================================== -->
 
-  <section class="wedding-notes-section reveal-target">
+  <section class="notes-section reveal-target">
 
-    <h2 class="wedding-notes-title">
+    <h2 class="notes-title">
       A Few Notes
     </h2>
 
-    <p class="wedding-notes-subtitle">
+    <p class="notes-subtitle">
       A few little details to help us celebrate together
     </p>
 
 
-    <div class="wedding-notes-buttons">
+    <div class="notes-buttons">
 
 
       <!-- UNPLUGGED CEREMONY -->
 
       <button type="button"
-              class="wedding-note-button note-popup-trigger"
+              class="note-button note-popup-trigger"
               data-note="unplugged">
 
         <span>📵</span>
 
-        <strong>
-          UNPLUGGED<br>
-          CEREMONY
-        </strong>
+        UNPLUGGED<br>
+        CEREMONY
 
       </button>
 
@@ -1616,17 +1573,16 @@ body{
       <!-- ADULTS ONLY -->
 
       <button type="button"
-              class="wedding-note-button note-popup-trigger"
+              class="note-button note-popup-trigger"
               data-note="adults">
 
         <span>🤍</span>
 
-        <strong>
-          ADULTS-ONLY<br>
-          CELEBRATION
-        </strong>
+        ADULTS-ONLY<br>
+        CELEBRATION
 
       </button>
+
 
     </div>
 
@@ -1639,7 +1595,7 @@ body{
 
   <div class="page reveal-target">
 
-    <img src="anasofia/gallery.png"
+    <img src="gallery.png"
          alt="Gallery">
 
   </div>
@@ -1651,11 +1607,11 @@ body{
 
   <section class="online-rsvp-section reveal-target">
 
-    <img src="anasofia/online-rsvp.png"
+    <img src="online-rsvp.png"
          alt="Online RSVP">
 
     <a href="#rsvp-form"
-       class="invitation-button online-rsvp-button">
+       class="online-rsvp-button">
 
       COMPLETE RSVP FORM
 
@@ -1666,23 +1622,18 @@ body{
 
   <!-- =====================================================
        TALLY RSVP FORM
+       REPLACE THE TALLY URL BELOW
   ====================================================== -->
 
-  <section class="tally-section reveal-target"
-           id="rsvp-form">
-
-    <h2 class="tally-title">
-      RSVP
-    </h2>
+  <section id="rsvp-form"
+           class="tally-section reveal-target">
 
     <div class="tally-card">
 
-      <!-- REPLACE WITH ANA SOFIA TALLY LINK -->
-
       <iframe
-        src="https://tally.so/embed/PLACEHOLDER?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        src="REPLACE-WITH-TALLY-EMBED-URL"
         loading="lazy"
-        title="Ana Sofía XV Online RSVP">
+        title="Ana Sofía XV RSVP Form">
       </iframe>
 
     </div>
@@ -1696,7 +1647,7 @@ body{
 
   <div class="page reveal-target">
 
-    <img src="anasofia/end.png"
+    <img src="end.png"
          alt="Thank You">
 
   </div>
@@ -1708,26 +1659,26 @@ body{
 
 
 <!-- =======================================================
-     SPECIAL PAGE — CHURCH + RECEPTION
+     SPECIAL PAGE - CHURCH + RECEPTION
 ======================================================= -->
 
 <section id="church-reception"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="church-reception-page">
 
-    <img src="anasofia/church-reception.png"
+    <img src="church-reception.png"
          alt="Church and Reception">
 
 
     <!-- CHURCH MAP -->
 
     <button type="button"
-            class="back-button church-map map-popup-trigger"
-            data-title="Church"
-            data-description="View the ceremony location and directions."
-            data-map=""
-            data-url="#">
+            class="location-button church-map map-popup-trigger"
+            data-title="Church Ceremony"
+            data-description="View the ceremony location and directions in Google Maps."
+            data-map="REPLACE-WITH-CHURCH-GOOGLE-MAPS-EMBED"
+            data-url="REPLACE-WITH-CHURCH-GOOGLE-MAPS-LINK">
 
       VIEW MAP
 
@@ -1737,142 +1688,142 @@ body{
     <!-- RECEPTION MAP -->
 
     <button type="button"
-            class="back-button reception-map map-popup-trigger"
+            class="location-button reception-map map-popup-trigger"
             data-title="Reception"
-            data-description="View the reception location and directions."
-            data-map=""
-            data-url="#">
+            data-description="View the reception location and directions in Google Maps."
+            data-map="REPLACE-WITH-RECEPTION-GOOGLE-MAPS-EMBED"
+            data-url="REPLACE-WITH-RECEPTION-GOOGLE-MAPS-LINK">
 
       VIEW MAP
 
     </button>
 
-
-    <!-- BACK -->
-
-    <a href="#big-day"
-       class="back-button church-reception-back back-to-main"
-       data-return="big-day">
-
-      BACK TO INVITATION
-
-    </a>
-
   </div>
+
+
+  <!-- BACK TO BIG DAY -->
+
+  <a href="#big-day"
+     class="back-button back-to-main"
+     data-target="big-day">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     SPECIAL PAGE — GODPARENTS
+     SPECIAL PAGE - GODPARENTS
 ======================================================= -->
 
 <section id="godparents"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="special-content">
 
-    <img src="anasofia/godparents.png"
-         alt="Godparents">
-
-    <a href="#details-section"
-       class="back-button godparents-back back-to-main"
-       data-return="details-section">
-
-      BACK TO INVITATION
-
-    </a>
+    <img src="godparents.png"
+         alt="My Godparents">
 
   </div>
+
+  <a href="#details-section"
+     class="back-button back-to-main"
+     data-target="details-section">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     SPECIAL PAGE — COURT OF HONOR
+     SPECIAL PAGE - COURT OF HONOR
 ======================================================= -->
 
 <section id="court-honor"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="special-content">
 
-    <img src="anasofia/court-honor.png"
-         alt="Court of Honor">
-
-    <a href="#details-section"
-       class="back-button court-honor-back back-to-main"
-       data-return="details-section">
-
-      BACK TO INVITATION
-
-    </a>
+    <img src="court-honor.png"
+         alt="My Court of Honor">
 
   </div>
+
+  <a href="#details-section"
+     class="back-button back-to-main"
+     data-target="details-section">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     SPECIAL PAGE — EVENT SCHEDULE
+     SPECIAL PAGE - EVENT SCHEDULE
 ======================================================= -->
 
 <section id="timeline"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="special-content">
 
-    <img src="anasofia/timeline.png"
+    <img src="timeline.png"
          alt="Event Schedule">
 
-    <a href="#details-section"
-       class="back-button timeline-back back-to-main"
-       data-return="details-section">
-
-      BACK TO INVITATION
-
-    </a>
-
   </div>
+
+  <a href="#details-section"
+     class="back-button back-to-main"
+     data-target="details-section">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     SPECIAL PAGE — DRESS CODE
+     SPECIAL PAGE - DRESS CODE
 ======================================================= -->
 
 <section id="dress-code"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="special-content">
 
-    <img src="anasofia/dress-code.png"
+    <img src="dress-code.png"
          alt="Dress Code">
 
-    <a href="#details-section"
-       class="back-button dress-code-back back-to-main"
-       data-return="details-section">
-
-      BACK TO INVITATION
-
-    </a>
-
   </div>
+
+  <a href="#details-section"
+     class="back-button back-to-main"
+     data-target="details-section">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     SPECIAL PAGE — ACCOMMODATIONS
+     SPECIAL PAGE - ACCOMMODATIONS
 ======================================================= -->
 
 <section id="accommodations"
          class="special-page">
 
-  <div class="special-image-page">
+  <div class="accommodations-page">
 
-    <img src="anasofia/accommodations.png"
+    <img src="accommodations.png"
          alt="Accommodations">
 
 
@@ -1880,10 +1831,10 @@ body{
 
     <button type="button"
             class="hotel-button hotel-one map-popup-trigger"
-            data-title="Hotel"
-            data-description="View the hotel location and directions."
-            data-map=""
-            data-url="#">
+            data-title="Hotel Option One"
+            data-description="View the hotel location and directions in Google Maps."
+            data-map="REPLACE-WITH-HOTEL-ONE-EMBED"
+            data-url="REPLACE-WITH-HOTEL-ONE-GOOGLE-MAPS-LINK">
 
       VIEW MAP
 
@@ -1894,64 +1845,58 @@ body{
 
     <button type="button"
             class="hotel-button hotel-two map-popup-trigger"
-            data-title="Hotel"
-            data-description="View the hotel location and directions."
-            data-map=""
-            data-url="#">
+            data-title="Hotel Option Two"
+            data-description="View the hotel location and directions in Google Maps."
+            data-map="REPLACE-WITH-HOTEL-TWO-EMBED"
+            data-url="REPLACE-WITH-HOTEL-TWO-GOOGLE-MAPS-LINK">
 
       VIEW MAP
 
     </button>
 
-
-    <!-- BACK -->
-
-    <a href="#details-section"
-       class="back-button accommodations-back back-to-main"
-       data-return="details-section">
-
-      BACK TO INVITATION
-
-    </a>
-
   </div>
+
+
+  <!-- BACK -->
+
+  <a href="#details-section"
+     class="back-button back-to-main"
+     data-target="details-section">
+
+    BACK TO INVITATION
+
+  </a>
 
 </section>
 
 
 <!-- =======================================================
-     NOTE MODAL — UNPLUGGED CEREMONY
+     MODAL - UNPLUGGED CEREMONY
 ======================================================= -->
 
 <div id="unpluggedModal"
-     class="note-modal"
+     class="modal"
      aria-hidden="true">
 
-  <div class="note-modal-card"
-       role="dialog"
-       aria-modal="true">
+  <div class="modal-card">
 
     <button type="button"
-            class="note-modal-close"
-            data-close-note="unpluggedModal"
-            aria-label="Close">
+            class="modal-close"
+            data-close-modal="unpluggedModal">
 
       ×
 
     </button>
 
-
-    <div class="note-modal-icon">
+    <div class="modal-icon">
       📵
     </div>
 
-
-    <h2 class="note-modal-title">
+    <h2 class="modal-title">
       Unplugged Ceremony
     </h2>
 
-
-    <p class="note-modal-text">
+    <p class="modal-text">
 
       We kindly invite you to be fully present
       during this special moment.
@@ -1959,10 +1904,17 @@ body{
       <br><br>
 
       Please silence and put away your phones
-      and cameras so we can celebrate together,
-      uninterrupted.
+      and cameras so everyone can enjoy the
+      ceremony together.
 
     </p>
+
+    <div class="modal-highlight">
+
+      Let the photographer capture the memories
+      while you simply enjoy the moment.
+
+    </div>
 
   </div>
 
@@ -1970,46 +1922,40 @@ body{
 
 
 <!-- =======================================================
-     NOTE MODAL — ADULTS ONLY
+     MODAL - ADULTS ONLY
 ======================================================= -->
 
 <div id="adultsModal"
-     class="note-modal"
+     class="modal"
      aria-hidden="true">
 
-  <div class="note-modal-card"
-       role="dialog"
-       aria-modal="true">
+  <div class="modal-card">
 
     <button type="button"
-            class="note-modal-close"
-            data-close-note="adultsModal"
-            aria-label="Close">
+            class="modal-close"
+            data-close-modal="adultsModal">
 
       ×
 
     </button>
 
-
-    <div class="note-modal-icon">
+    <div class="modal-icon">
       🤍
     </div>
 
-
-    <h2 class="note-modal-title">
+    <h2 class="modal-title">
       Adults-Only Celebration
     </h2>
 
-
-    <p class="note-modal-text">
+    <p class="modal-text">
 
       We love your little ones, but this celebration
-      will be an adults-only event.
+      will be reserved for adults.
 
       <br><br>
 
-      Thank you for understanding and helping us
-      make this an unforgettable celebration.
+      Thank you for understanding and helping make
+      this evening extra special.
 
     </p>
 
@@ -2019,82 +1965,124 @@ body{
 
 
 <!-- =======================================================
-     BANK DETAILS MODAL
+     MODAL - REGISTRY
 ======================================================= -->
 
-<div id="bankModal"
-     class="note-modal"
+<div id="registryModal"
+     class="modal"
      aria-hidden="true">
 
-  <div class="note-modal-card"
-       role="dialog"
-       aria-modal="true">
+  <div class="modal-card">
 
     <button type="button"
-            class="note-modal-close"
-            id="closeBankModal"
-            aria-label="Close">
+            class="modal-close"
+            data-close-modal="registryModal">
 
       ×
 
     </button>
 
-
-    <div class="note-modal-icon">
+    <div class="modal-icon">
       🎁
     </div>
 
+    <h2 class="modal-title">
+      Gift Registry
+    </h2>
 
-    <h2 class="note-modal-title">
+    <p class="modal-text">
+
+      Your presence is the greatest gift of all.
+
+      <br><br>
+
+      If you would like to celebrate Ana Sofía
+      with a special gift, you may visit her registry.
+
+    </p>
+
+    <a href="REPLACE-WITH-REGISTRY-LINK"
+       target="_blank"
+       rel="noopener"
+       class="modal-link">
+
+      VIEW REGISTRY
+
+    </a>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL - BANK DETAILS
+======================================================= -->
+
+<div id="bankModal"
+     class="modal"
+     aria-hidden="true">
+
+  <div class="modal-card">
+
+    <button type="button"
+            class="modal-close"
+            data-close-modal="bankModal">
+
+      ×
+
+    </button>
+
+    <div class="modal-icon">
+      💌
+    </div>
+
+    <h2 class="modal-title">
       Bank Details
     </h2>
 
+    <p class="modal-text">
 
-    <p class="note-modal-text">
-
-      Thank you for thinking of me on this
-      special occasion.
+      If you would like to honor Ana Sofía
+      with a monetary gift, you may use the
+      information below.
 
     </p>
 
 
+    <!-- REPLACE BANK INFORMATION -->
+
     <div class="bank-details">
 
-      <strong>
-        Bank Transfer Information
-      </strong>
+      <strong>Account Name:</strong>
+
+      <br>
+
+      REPLACE NAME
 
       <br><br>
 
-      <strong>
-        Account Name:
-      </strong>
-
-      ____________________
+      <strong>Bank:</strong>
 
       <br>
 
-      <strong>
-        Bank:
-      </strong>
+      REPLACE BANK NAME
 
-      ____________________
+      <br><br>
 
-      <br>
-
-      <strong>
-        Account Number:
-      </strong>
-
-      ____________________
+      <strong>Account Number:</strong>
 
       <br>
 
-      <strong>
-        Routing Number:
-      </strong>
+      REPLACE ACCOUNT NUMBER
 
-      ____________________
+      <br><br>
+
+      <strong>Routing Number:</strong>
+
+      <br>
+
+      REPLACE ROUTING NUMBER
 
     </div>
 
@@ -2108,23 +2096,21 @@ body{
 ======================================================= -->
 
 <div id="mapModal"
-     class="map-modal"
+     class="modal"
      aria-hidden="true">
 
-  <div class="map-modal-card"
-       role="dialog"
-       aria-modal="true">
-
+  <div class="map-modal-card">
 
     <button type="button"
-            class="map-modal-close"
-            id="mapModalClose"
-            aria-label="Close">
+            class="modal-close"
+            id="mapModalClose">
 
       ×
 
     </button>
 
+
+    <!-- MAP -->
 
     <iframe id="mapPreview"
             class="map-preview"
@@ -2133,12 +2119,13 @@ body{
     </iframe>
 
 
+    <!-- CONTENT -->
+
     <div class="map-modal-content">
 
       <div class="map-modal-icon">
         📍
       </div>
-
 
       <h2 id="mapModalTitle"
           class="map-modal-title">
@@ -2147,14 +2134,12 @@ body{
 
       </h2>
 
-
       <p id="mapModalDescription"
          class="map-modal-description">
 
-        View the location and directions.
+        View the location and directions in Google Maps.
 
       </p>
-
 
       <a id="mapOpenButton"
          class="map-open-button"
@@ -2177,11 +2162,11 @@ body{
      MUSIC
 ======================================================= -->
 
-<audio id="weddingMusic"
+<audio id="invitationMusic"
        loop
        preload="auto">
 
-  <source src="anasofia/musica.mp3"
+  <source src="musica.mp3"
           type="audio/mpeg">
 
 </audio>
@@ -2212,7 +2197,7 @@ const mainInvitation =
   document.getElementById("mainInvitation");
 
 const music =
-  document.getElementById("weddingMusic");
+  document.getElementById("invitationMusic");
 
 const musicButton =
   document.getElementById("musicButton");
@@ -2222,7 +2207,7 @@ const specialPages =
 
 
 /* =========================================================
-   ENVELOPE
+   ENVELOPE OPEN
 ========================================================= */
 
 function openEnvelope(){
@@ -2231,23 +2216,19 @@ function openEnvelope(){
 
   startMusic();
 
-
   setTimeout(function(){
 
     mainInvitation.style.display="block";
 
     envelopeIntro.classList.add("hide");
 
-
     window.scrollTo({
       top:0,
       behavior:"auto"
     });
 
-
     const cover =
       document.querySelector(".cover-page");
-
 
     if(cover){
 
@@ -2259,10 +2240,9 @@ function openEnvelope(){
 
     }
 
-
     activateScrollAnimations();
 
-  },1800);
+  },1400);
 
 }
 
@@ -2274,14 +2254,22 @@ envelopeSeal.addEventListener(
 
 
 /* =========================================================
-   UNIVERSAL SCROLL REVEAL
+   SCROLL REVEAL
 ========================================================= */
+
+let scrollAnimationsActive=false;
 
 function activateScrollAnimations(){
 
+  if(scrollAnimationsActive){
+    checkVisibleSections();
+    return;
+  }
+
+  scrollAnimationsActive=true;
+
   const sections =
     document.querySelectorAll(".reveal-target");
-
 
   sections.forEach(function(section){
 
@@ -2289,19 +2277,16 @@ function activateScrollAnimations(){
 
   });
 
-
   setTimeout(
     checkVisibleSections,
     100
   );
-
 
   window.addEventListener(
     "scroll",
     checkVisibleSections,
     {passive:true}
   );
-
 
   window.addEventListener(
     "resize",
@@ -2318,16 +2303,13 @@ function checkVisibleSections(){
       ".reveal-target.reveal-page:not(.visible)"
     );
 
-
   sections.forEach(function(section){
 
     const rect =
       section.getBoundingClientRect();
 
-
     const triggerPoint =
-      window.innerHeight*.88;
-
+      window.innerHeight*0.88;
 
     if(
       rect.top<triggerPoint &&
@@ -2345,6 +2327,8 @@ function checkVisibleSections(){
 
 /* =========================================================
    COUNTDOWN
+   ANA SOFIA XV
+   JANUARY 30, 2027
 ========================================================= */
 
 const eventDate =
@@ -2358,7 +2342,6 @@ function updateCountdown(){
   const now =
     Date.now();
 
-
   const difference =
     eventDate-now;
 
@@ -2366,8 +2349,11 @@ function updateCountdown(){
   if(difference<=0){
 
     document.getElementById("days").textContent="0";
+
     document.getElementById("hours").textContent="0";
+
     document.getElementById("minutes").textContent="0";
+
     document.getElementById("seconds").textContent="0";
 
     return;
@@ -2439,36 +2425,15 @@ setInterval(
    SPECIAL PAGES
 ========================================================= */
 
-function showMainInvitation(returnId){
+function showMainInvitation(){
 
   mainInvitation.style.display="block";
-
 
   specialPages.forEach(function(page){
 
     page.classList.remove("active");
 
   });
-
-
-  setTimeout(function(){
-
-    const target =
-      document.getElementById(returnId);
-
-
-    if(target){
-
-      target.classList.add("visible");
-
-      target.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-    }
-
-  },80);
 
 }
 
@@ -2477,22 +2442,18 @@ function showSpecialPage(pageId){
 
   mainInvitation.style.display="none";
 
-
   specialPages.forEach(function(page){
 
     page.classList.remove("active");
 
   });
 
-
   const selectedPage =
     document.getElementById(pageId);
-
 
   if(selectedPage){
 
     selectedPage.classList.add("active");
-
 
     window.scrollTo({
       top:0,
@@ -2505,7 +2466,7 @@ function showSpecialPage(pageId){
 
 
 /* =========================================================
-   SPECIAL LINKS
+   SPECIAL PAGE LINKS
 ========================================================= */
 
 document
@@ -2518,17 +2479,14 @@ document
 
       event.preventDefault();
 
-
       const pageId =
         this.getAttribute("data-page");
-
 
       history.pushState(
         null,
         "",
         "#"+pageId
       );
-
 
       showSpecialPage(pageId);
 
@@ -2552,19 +2510,34 @@ document
 
       event.preventDefault();
 
+      const targetId =
+        this.getAttribute("data-target");
 
-      const returnId =
-        this.getAttribute("data-return");
-
+      showMainInvitation();
 
       history.pushState(
         null,
         "",
-        "#"+returnId
+        "#"+targetId
       );
 
+      setTimeout(function(){
 
-      showMainInvitation(returnId);
+        const target =
+          document.getElementById(targetId);
+
+        if(target){
+
+          target.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+
+          target.classList.add("visible");
+
+        }
+
+      },50);
 
     }
   );
@@ -2573,7 +2546,7 @@ document
 
 
 /* =========================================================
-   HASH NAVIGATION
+   LOAD PAGE FROM HASH
 ========================================================= */
 
 function loadPageFromHash(){
@@ -2582,7 +2555,7 @@ function loadPageFromHash(){
     window.location.hash.replace("#","");
 
 
-  const specialPageIds = [
+  const specialPageIds=[
     "church-reception",
     "godparents",
     "court-honor",
@@ -2592,9 +2565,7 @@ function loadPageFromHash(){
   ];
 
 
-  if(
-    specialPageIds.includes(hash)
-  ){
+  if(specialPageIds.includes(hash)){
 
     envelopeIntro.classList.add("hide");
 
@@ -2607,37 +2578,30 @@ function loadPageFromHash(){
   }
 
 
-  if(hash){
+  if(
+    hash==="big-day" ||
+    hash==="details-section"
+  ){
 
     envelopeIntro.classList.add("hide");
 
-    mainInvitation.style.display="block";
-
-
-    specialPages.forEach(function(page){
-
-      page.classList.remove("active");
-
-    });
-
+    showMainInvitation();
 
     setTimeout(function(){
 
       const target =
         document.getElementById(hash);
 
-
       if(target){
-
-        target.classList.add("visible");
 
         target.scrollIntoView({
           behavior:"auto",
           block:"start"
         });
 
-      }
+        target.classList.add("visible");
 
+      }
 
       activateScrollAnimations();
 
@@ -2668,10 +2632,50 @@ if(window.location.hash){
 
 
 /* =========================================================
+   GENERIC MODAL FUNCTIONS
+========================================================= */
+
+function openModal(modal){
+
+  if(!modal){
+    return;
+  }
+
+  modal.classList.add("active");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+  document.body.style.overflow="hidden";
+
+}
+
+
+function closeModal(modal){
+
+  if(!modal){
+    return;
+  }
+
+  modal.classList.remove("active");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow="";
+
+}
+
+
+/* =========================================================
    NOTE MODALS
 ========================================================= */
 
-const noteModalMap = {
+const noteModalMap={
 
   unplugged:
     document.getElementById("unpluggedModal"),
@@ -2693,25 +2697,9 @@ document
       const noteType =
         this.getAttribute("data-note");
 
-
-      const modal =
-        noteModalMap[noteType];
-
-
-      if(!modal){
-        return;
-      }
-
-
-      modal.classList.add("active");
-
-      modal.setAttribute(
-        "aria-hidden",
-        "false"
+      openModal(
+        noteModalMap[noteType]
       );
-
-
-      document.body.style.overflow="hidden";
 
     }
   );
@@ -2719,28 +2707,54 @@ document
 });
 
 
-function closeNoteModal(modal){
+/* =========================================================
+   REGISTRY MODAL
+========================================================= */
 
-  if(!modal){
-    return;
+const registryModal =
+  document.getElementById("registryModal");
+
+const openRegistryModal =
+  document.getElementById("openRegistryModal");
+
+
+openRegistryModal.addEventListener(
+  "click",
+  function(){
+
+    openModal(registryModal);
+
   }
+);
 
 
-  modal.classList.remove("active");
+/* =========================================================
+   BANK MODAL
+========================================================= */
 
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
+const bankModal =
+  document.getElementById("bankModal");
+
+const openBankModal =
+  document.getElementById("openBankModal");
 
 
-  document.body.style.overflow="";
+openBankModal.addEventListener(
+  "click",
+  function(){
 
-}
+    openModal(bankModal);
 
+  }
+);
+
+
+/* =========================================================
+   MODAL CLOSE BUTTONS
+========================================================= */
 
 document
-.querySelectorAll("[data-close-note]")
+.querySelectorAll("[data-close-modal]")
 .forEach(function(button){
 
   button.addEventListener(
@@ -2748,10 +2762,9 @@ document
     function(){
 
       const modalId =
-        this.getAttribute("data-close-note");
+        this.getAttribute("data-close-modal");
 
-
-      closeNoteModal(
+      closeModal(
         document.getElementById(modalId)
       );
 
@@ -2761,7 +2774,12 @@ document
 });
 
 
-Object.values(noteModalMap)
+/* =========================================================
+   CLOSE MODAL BY CLICKING BACKGROUND
+========================================================= */
+
+document
+.querySelectorAll(".modal")
 .forEach(function(modal){
 
   modal.addEventListener(
@@ -2770,7 +2788,7 @@ Object.values(noteModalMap)
 
       if(event.target===modal){
 
-        closeNoteModal(modal);
+        closeModal(modal);
 
       }
 
@@ -2781,74 +2799,7 @@ Object.values(noteModalMap)
 
 
 /* =========================================================
-   BANK DETAILS MODAL
-========================================================= */
-
-const bankModal =
-  document.getElementById("bankModal");
-
-const openBankModal =
-  document.getElementById("openBankModal");
-
-const closeBankModal =
-  document.getElementById("closeBankModal");
-
-
-openBankModal.addEventListener(
-  "click",
-  function(){
-
-    bankModal.classList.add("active");
-
-    bankModal.setAttribute(
-      "aria-hidden",
-      "false"
-    );
-
-
-    document.body.style.overflow="hidden";
-
-  }
-);
-
-
-function closeBankDetails(){
-
-  bankModal.classList.remove("active");
-
-  bankModal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
-
-  document.body.style.overflow="";
-
-}
-
-
-closeBankModal.addEventListener(
-  "click",
-  closeBankDetails
-);
-
-
-bankModal.addEventListener(
-  "click",
-  function(event){
-
-    if(event.target===bankModal){
-
-      closeBankDetails();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   MAP POPUP
+   MAP MODAL
 ========================================================= */
 
 const mapModal =
@@ -2881,44 +2832,16 @@ document
       mapModalTitle.textContent =
         this.getAttribute("data-title");
 
-
       mapModalDescription.textContent =
         this.getAttribute("data-description");
 
-
-      const mapUrl =
+      mapPreview.src =
         this.getAttribute("data-map");
 
-
-      const directionsUrl =
+      mapOpenButton.href =
         this.getAttribute("data-url");
 
-
-      if(mapUrl){
-
-        mapPreview.src =
-          mapUrl;
-
-      }else{
-
-        mapPreview.removeAttribute("src");
-
-      }
-
-
-      mapOpenButton.href =
-        directionsUrl || "#";
-
-
-      mapModal.classList.add("active");
-
-      mapModal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-
-      document.body.style.overflow="hidden";
+      openModal(mapModal);
 
     }
   );
@@ -2928,18 +2851,9 @@ document
 
 function closeMapModal(){
 
-  mapModal.classList.remove("active");
-
-  mapModal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
-
+  closeModal(mapModal);
 
   mapPreview.src="";
-
-
-  document.body.style.overflow="";
 
 }
 
@@ -2977,30 +2891,21 @@ document.addEventListener(
     }
 
 
-    Object.values(noteModalMap)
+    document
+    .querySelectorAll(".modal.active")
     .forEach(function(modal){
 
-      if(modal.classList.contains("active")){
+      if(modal===mapModal){
 
-        closeNoteModal(modal);
+        closeMapModal();
+
+      }else{
+
+        closeModal(modal);
 
       }
 
     });
-
-
-    if(bankModal.classList.contains("active")){
-
-      closeBankDetails();
-
-    }
-
-
-    if(mapModal.classList.contains("active")){
-
-      closeMapModal();
-
-    }
 
   }
 );
