@@ -1,2874 +1,3089 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#071d4f">
 
-<title>Mis XV Años | Ana Sofía</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Ana Sofía | XV Years</title>
 
 <style>
 
-/* ================================
-   VARIABLES Y RESET
-================================ */
+/* =========================================================
+   RESET
+========================================================= */
 
-:root {
---navy:#071d4f;
---blue:#123b8f;
---royal:#174eb5;
---light-blue:#c9dcff;
---gold:#caa55b;
---soft-gold:#ead7a4;
---ivory:#fffdf8;
---cream:#f7f1e7;
---text:#26324a;
---white:#ffffff;
+*{
+  box-sizing:border-box;
 }
 
-* {
-margin:0;
-padding:0;
-box-sizing:border-box;
+html{
+  scroll-behavior:smooth;
 }
 
-html {
-scroll-behavior:smooth;
+body{
+  margin:0;
+  padding:0;
+  background:#f7f3f7;
+  font-family:Georgia,"Times New Roman",serif;
+  overflow-x:hidden;
 }
 
-body {
-font-family:'Montserrat',sans-serif;
-background:radial-gradient(circle at top,#ffffff 0%,#f8f3eb 45%,#efe6d8 100%);
-color:var(--text);
-overflow-x:hidden;
-}
 
-body::before {
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background-image:
-radial-gradient(circle at 20% 20%,rgba(202,165,91,.07) 0 1px,transparent 1px),
-radial-gradient(circle at 80% 70%,rgba(23,78,181,.05) 0 1px,transparent 1px);
-background-size:34px 34px,46px 46px;
-z-index:-1;
-}
+/* =========================================================
+   ENVELOPE INTRO
+========================================================= */
 
-img {
-display:block;
-width:100%;
+#envelopeIntro{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#eee7ef;
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
 }
 
-a {
-text-decoration:none;
+.envelope-stage{
+  position:relative;
+  width:min(100vw,70.64vh);
+  aspect-ratio:1054/1492;
+  overflow:visible;
+  perspective:1000px;
 }
 
-button {
-font:inherit;
+.envelope-base,
+.envelope-glow,
+.envelope-card,
+.envelope-body,
+.envelope-flap,
+.envelope-seal{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 
-section {
-padding:100px 20px;
-position:relative;
-overflow:hidden;
+.envelope-base{
+  z-index:1;
 }
 
-.container {
-max-width:1100px;
-margin:auto;
-position:relative;
-z-index:2;
+.envelope-glow{
+  z-index:2;
+  opacity:0;
+  transform:scale(.92);
+  transition:
+    opacity .7s ease,
+    transform 1.4s ease;
+  pointer-events:none;
 }
 
-/* ================================
-   TIPOGRAFÍA GENERAL
-================================ */
-
-.section-label {
-font-size:.72rem;
-letter-spacing:4px;
-text-transform:uppercase;
-color:var(--gold);
-margin-bottom:14px;
-font-weight:600;
+.envelope-card{
+  z-index:3;
+  transition:
+    transform 1.5s cubic-bezier(.22,1,.36,1),
+    opacity .8s ease;
 }
 
-.section-title {
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(2.7rem,6vw,5rem);
-line-height:.95;
-font-weight:600;
-color:var(--navy);
-margin-bottom:25px;
+.envelope-body{
+  z-index:4;
 }
 
-.script {
-font-family:'Great Vibes',cursive;
-font-size:clamp(2.8rem,6vw,5rem);
-font-weight:400;
-color:var(--gold);
-line-height:1;
+.envelope-flap{
+  z-index:5;
+  transform-origin:50% 28.2%;
+  transform:rotateX(0deg);
+  transition:
+    transform 1.2s cubic-bezier(.4,0,.2,1);
+  backface-visibility:visible;
+  -webkit-backface-visibility:visible;
 }
 
-.text {
-font-size:1rem;
-line-height:1.9;
-font-weight:400;
-max-width:720px;
-margin:auto;
+.envelope-seal{
+  z-index:10;
+  cursor:pointer;
+  transition:
+    opacity .5s ease,
+    transform .6s ease;
+  animation:sealPulse 2.2s ease-in-out infinite;
 }
 
-.gold-line {
-width:90px;
-height:1px;
-background:linear-gradient(90deg,transparent,var(--gold),transparent);
-margin:24px auto;
-}
+@keyframes sealPulse{
 
-/* ================================
-   ANIMACIONES SCROLL
-================================ */
+  0%,
+  100%{
+    transform:scale(1);
+  }
 
-.reveal {
-opacity:0;
-transform:translateY(35px);
-transition:opacity 1s ease,transform 1s ease;
-}
+  50%{
+    transform:scale(1.025);
+  }
 
-.reveal.show {
-opacity:1;
-transform:none;
 }
 
-/* ================================
-   MARIPOSAS
-================================ */
+@keyframes glowPulse{
 
-.butterfly {
-position:absolute;
-font-size:clamp(1.4rem,3vw,2.4rem);
-filter:drop-shadow(0 6px 8px rgba(7,29,79,.2));
-z-index:3;
-pointer-events:none;
-animation:fly 11s ease-in-out infinite;
-}
+  0%,
+  100%{
+    opacity:.55;
+    transform:scale(1);
+  }
 
-.butterfly:nth-child(2) {
-animation-duration:15s;
-animation-delay:-5s;
-}
+  50%{
+    opacity:1;
+    transform:scale(1.06);
+  }
 
-.butterfly:nth-child(3) {
-animation-duration:13s;
-animation-delay:-8s;
 }
 
-.butterfly:nth-child(4) {
-animation-duration:18s;
-animation-delay:-2s;
+#envelopeIntro.opening .envelope-glow{
+  opacity:1;
+  transform:scale(1.05);
+  animation:glowPulse 1.4s ease-in-out infinite;
 }
-
-@keyframes fly {
 
-0%,100% {
-transform:translate(0,0) rotate(-8deg) scale(1);
+#envelopeIntro.opening .envelope-flap{
+  transform:rotateX(180deg);
 }
 
-25% {
-transform:translate(35px,-50px) rotate(12deg) scale(1.08);
+#envelopeIntro.opening .envelope-card{
+  transform:translateY(-14%);
 }
 
-50% {
-transform:translate(-25px,-90px) rotate(-5deg) scale(.95);
+#envelopeIntro.opening .envelope-seal{
+  opacity:0;
+  transform:scale(1.18);
+  pointer-events:none;
+  animation:none;
 }
 
-75% {
-transform:translate(50px,-40px) rotate(15deg) scale(1.05);
+#envelopeIntro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-}
 
-/* ================================
-   BOTÓN MÚSICA
-================================ */
+/* =========================================================
+   MAIN INVITATION
+========================================================= */
 
-.music-button {
-position:fixed;
-right:18px;
-bottom:18px;
-z-index:90;
-display:flex;
-align-items:center;
-gap:9px;
-padding:12px 17px;
-border:1px solid rgba(202,165,91,.65);
-background:rgba(7,29,79,.9);
-color:white;
-font-family:'Montserrat',sans-serif;
-font-size:.68rem;
-letter-spacing:1.5px;
-text-transform:uppercase;
-cursor:pointer;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
-backdrop-filter:blur(8px);
-transition:.3s ease;
+#mainInvitation{
+  display:none;
 }
 
-.music-button:hover {
-background:var(--gold);
-transform:translateY(-2px);
+.invitation{
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
+  position:relative;
 }
 
-.music-button.playing #musicIcon {
-animation:musicPulse 1.2s ease-in-out infinite;
-}
 
-@keyframes musicPulse {
+/* =========================================================
+   UNIVERSAL PAGE REVEAL
+========================================================= */
 
-0%,100% {
-transform:scale(1);
+.reveal-page{
+  opacity:0;
+  transform:translateY(35px) scale(.985);
+  transition:
+    opacity 1.5s ease,
+    transform 1.5s cubic-bezier(.22,1,.36,1);
 }
 
-50% {
-transform:scale(1.25);
+.reveal-page.visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
 
-}
 
-/* ================================
-   HERO
-================================ */
+/* =========================================================
+   ALL PAGE IMAGES
+========================================================= */
 
-.hero {
-min-height:100vh;
-padding:30px 20px 60px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:
-linear-gradient(to bottom,rgba(7,29,79,.35),rgba(7,29,79,.75)),
-url('sample/XV_Gallery_01_Hero.png') center/cover no-repeat;
-color:white;
-text-align:center;
+.page img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
-.hero::before {
-content:"";
-position:absolute;
-inset:0;
-background:radial-gradient(circle at center,transparent 25%,rgba(0,0,0,.4) 100%);
-}
 
-.hero-content {
-position:relative;
-z-index:2;
-width:min(100%,850px);
-padding:50px 25px;
-border:1px solid rgba(234,215,164,.75);
-outline:1px solid rgba(255,255,255,.18);
-outline-offset:9px;
-background:linear-gradient(135deg,rgba(7,29,79,.25),rgba(0,0,0,.18));
-backdrop-filter:blur(2px);
-box-shadow:0 25px 80px rgba(0,0,0,.3);
+/* =========================================================
+   COVER
+========================================================= */
+
+.cover-page{
+  opacity:0;
+  transform:translateY(35px) scale(.985);
+  transition:
+    opacity 1.5s ease,
+    transform 1.5s cubic-bezier(.22,1,.36,1);
 }
 
-.hero-content::before,
-.hero-content::after {
-content:"❀ ✦ ❀";
-position:absolute;
-font-size:2rem;
-color:var(--soft-gold);
-opacity:.9;
-white-space:nowrap;
+.cover-page.cover-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
 }
+
 
-.hero-content::before {
-top:-16px;
-left:50%;
-transform:translateX(-50%);
+/* =========================================================
+   BIG DAY
+========================================================= */
+
+.big-day-section{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
 }
 
-.hero-content::after {
-bottom:-16px;
-left:50%;
-transform:translateX(-50%) rotate(180deg);
+.big-day-section>img{
+  width:100%;
+  height:auto;
+  display:block;
 }
+
+
+/* =========================================================
+   UNIVERSAL BUTTONS
+========================================================= */
 
-.hero-small {
-font-size:.7rem;
-letter-spacing:5px;
-text-transform:uppercase;
-margin-bottom:20px;
-color:var(--soft-gold);
+.invitation-button,
+.details-button,
+.hotel-button,
+.back-button,
+.gifts-button,
+.rsvp-button{
+  border:1px solid #9c7aa8;
+  border-radius:25px;
+  background:rgba(255,255,255,.92);
+  color:#755a82;
+  text-decoration:none;
+  text-align:center;
+  cursor:pointer;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 3px 10px rgba(0,0,0,.10);
+  font-family:Georgia,"Times New Roman",serif;
 }
 
-.hero h1 {
-font-family:'Great Vibes',cursive;
-font-size:clamp(5rem,13vw,10rem);
-font-weight:400;
-line-height:.8;
-text-shadow:0 5px 30px rgba(0,0,0,.35);
+
+/* =========================================================
+   BIG DAY BUTTONS
+========================================================= */
+
+.big-day-button{
+  position:absolute;
+  z-index:999;
+  width:140px;
+  padding:8px 7px;
+  font-size:9px;
+  letter-spacing:1px;
+  line-height:1.2;
 }
 
-.hero-divider {
-width:110px;
-height:1px;
-background:var(--soft-gold);
-margin:30px auto;
+.big-day-countdown{
+  position:absolute;
+  z-index:999;
+  top:18%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:92%;
+  text-align:center;
 }
 
-.hero p {
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(1.5rem,4vw,2.3rem);
-letter-spacing:1px;
+.big-day-countdown-title{
+  margin:0 0 10px;
+  color:#755a82;
+  font-size:12px;
+  letter-spacing:1.4px;
 }
 
-.hero-date {
-margin-top:25px;
-font-size:.8rem;
-letter-spacing:3px;
-text-transform:uppercase;
+.big-day-countdown-boxes{
+  display:flex;
+  justify-content:center;
+  gap:7px;
+  flex-wrap:nowrap;
 }
 
-.scroll-down {
-position:absolute;
-bottom:28px;
-left:50%;
-transform:translateX(-50%);
-color:white;
-font-size:.7rem;
-letter-spacing:3px;
-text-transform:uppercase;
-z-index:3;
-animation:bounce 2s infinite;
+.big-day-countdown-box{
+  min-width:48px;
+  padding:6px 5px;
+  background:rgba(255,255,255,.82);
+  border:1px solid #bda6c5;
+  border-radius:7px;
 }
 
-@keyframes bounce {
+.big-day-countdown-number{
+  display:block;
+  font-size:17px;
+  color:#755a82;
+  font-weight:bold;
+}
 
-0%,100% {
-transform:translate(-50%,0);
+.big-day-countdown-label{
+  display:block;
+  margin-top:2px;
+  font-size:7px;
+  letter-spacing:.7px;
+  color:#756b78;
+  text-transform:uppercase;
 }
 
-50% {
-transform:translate(-50%,8px);
+.big-day-calendar{
+  top:54%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
+.big-day-details{
+  top:63%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
-/* ================================
-   INTRO
-================================ */
 
-.intro {
-text-align:center;
-background:var(--ivory);
-}
+/* =========================================================
+   THE DETAILS
+========================================================= */
 
-/* ================================
-   COUNTDOWN
-================================ */
+.details-section{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
+  background:#f7f3f7;
+  padding:55px 18px 60px;
+  text-align:center;
+}
 
-.countdown-section {
-text-align:center;
-background:linear-gradient(135deg,#f7f1e7,#fffdf8);
-padding-top:80px;
-padding-bottom:80px;
+.details-title{
+  margin:0 0 8px;
+  color:#755a82;
+  font-family:
+    "Snell Roundhand",
+    "Brush Script MT",
+    "Segoe Script",
+    "Lucida Handwriting",
+    cursive;
+  font-size:42px;
+  font-weight:normal;
+  line-height:1.1;
 }
 
-.countdown {
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-max-width:850px;
-margin:45px auto 0;
+.details-subtitle{
+  margin:0 auto 28px;
+  max-width:470px;
+  color:#756b78;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  line-height:1.6;
 }
 
-.countdown-item {
-position:relative;
-padding:35px 20px 30px;
-background:rgba(255,255,255,.65);
-border:1px solid rgba(202,165,91,.65);
-box-shadow:0 15px 35px rgba(7,29,79,.05);
+.details-buttons{
+  width:100%;
+  max-width:600px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
 
-.countdown-item::before {
-content:"✦";
-position:absolute;
-top:-15px;
-left:50%;
-transform:translateX(-50%);
-background:var(--ivory);
-padding:0 16px;
-color:var(--gold);
-font-size:1.4rem;
+.details-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:58px;
+  padding:12px 10px;
+  font-size:9px;
+  letter-spacing:1px;
+  line-height:1.35;
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
 }
 
-.countdown-number {
-display:block;
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(3rem,7vw,5rem);
-line-height:1;
-font-weight:500;
-color:var(--navy);
+.details-button:last-child{
+  grid-column:1/3;
 }
 
-.countdown-label {
-display:block;
-margin-top:12px;
-font-size:.68rem;
-letter-spacing:4px;
-text-transform:uppercase;
-font-weight:600;
-color:var(--gold);
+.details-button:hover{
+  transform:translateY(-2px);
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
-.calendar-button {
-margin-top:35px;
+.details-button:active{
+  transform:translateY(0);
 }
 
-/* ================================
-   PADRES
-================================ */
 
-.parents-grid {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-margin-top:10px;
-}
+/* =========================================================
+   GIFTS + RSVP
+========================================================= */
 
-.floral-frame {
-position:relative;
-padding:18px;
+.gifts-rsvp-section{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
 }
 
-.floral-frame::before {
-content:"❀ ✦ ❀";
-position:absolute;
-top:-12px;
-left:50%;
-transform:translateX(-50%);
-background:var(--ivory);
-padding:0 16px;
-color:var(--gold);
-font-size:1.5rem;
-letter-spacing:8px;
-z-index:2;
-white-space:nowrap;
+.gifts-rsvp-section>img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
-.floral-frame::after {
-content:"";
-position:absolute;
-inset:0;
-border:1px solid var(--gold);
-pointer-events:none;
+.gifts-button{
+  position:absolute;
+  z-index:999;
+  width:145px;
+  padding:8px 7px;
+  font-size:8px;
+  letter-spacing:.9px;
 }
 
-.photo-card {
-position:relative;
-overflow:hidden;
-box-shadow:0 25px 55px rgba(7,29,79,.16);
+.gifts-registry{
+  top:43%;
+  left:32%;
+  transform:translate(-50%,-50%);
 }
 
-.photo-card img {
-aspect-ratio:4/5;
-object-fit:cover;
-transition:transform 1.2s ease;
+.gifts-bank{
+  top:43%;
+  left:68%;
+  transform:translate(-50%,-50%);
 }
 
-.photo-card:hover img {
-transform:scale(1.04);
+.gifts-email{
+  top:79%;
+  left:24%;
+  transform:translate(-50%,-50%);
 }
 
-.parents-text {
-text-align:center;
+.gifts-text{
+  top:79%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
 
-.parents-text h3 {
-font-family:'Cormorant Garamond',serif;
-font-size:2rem;
-font-weight:500;
-color:var(--navy);
-margin:15px 0;
+.gifts-form{
+  top:79%;
+  left:76%;
+  transform:translate(-50%,-50%);
 }
 
-/* ================================
-   PADRINOS
-================================ */
 
-.padrinos {
-background:linear-gradient(145deg,#091e4d,#123b8f);
-color:white;
-text-align:center;
+/* =========================================================
+   A FEW NOTES
+========================================================= */
+
+.wedding-notes-section{
+  background:#f7f3f7;
+  padding:48px 18px 52px;
+  text-align:center;
 }
 
-.padrinos .section-title {
-color:white;
+.wedding-notes-title{
+  margin:0 0 7px;
+  color:#755a82;
+  font-family:
+    "Snell Roundhand",
+    "Brush Script MT",
+    "Segoe Script",
+    "Lucida Handwriting",
+    cursive;
+  font-size:40px;
+  font-weight:normal;
+  line-height:1.1;
 }
 
-.padrinos .section-label {
-color:var(--soft-gold);
+.wedding-notes-subtitle{
+  margin:0 auto 27px;
+  max-width:480px;
+  color:#756b78;
+  font-size:11px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  line-height:1.6;
 }
 
-.padrinos-list {
-max-width:800px;
-margin:45px auto 0;
-display:grid;
-gap:14px;
+.wedding-notes-buttons{
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  display:flex;
+  justify-content:center;
+  align-items:stretch;
+  gap:12px;
 }
 
-.padrino-item {
-border:1px solid rgba(234,215,164,.28);
-background:rgba(255,255,255,.03);
-overflow:hidden;
-transition:.3s ease;
+.wedding-note-button{
+  flex:1;
+  min-height:68px;
+  padding:12px 8px;
+  border:1px solid #9c7aa8;
+  border-radius:28px;
+  background:rgba(255,255,255,.92);
+  color:#755a82;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:9px;
+  letter-spacing:1px;
+  line-height:1.35;
+  cursor:pointer;
+  box-shadow:0 3px 10px rgba(0,0,0,.09);
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    box-shadow .25s ease;
 }
 
-.padrino-item:hover {
-border-color:rgba(234,215,164,.6);
+.wedding-note-button:hover{
+  transform:translateY(-2px);
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
-.padrino-toggle {
-width:100%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
-padding:20px 25px;
-border:none;
-background:transparent;
-color:white;
-cursor:pointer;
-text-align:left;
+.wedding-note-button span{
+  display:block;
+  margin-bottom:4px;
+  font-size:18px;
 }
+
 
-.padrino-role {
-font-size:.72rem;
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--soft-gold);
-font-family:'Montserrat',sans-serif;
-font-weight:600;
+/* =========================================================
+   ONLINE RSVP
+========================================================= */
+
+.online-rsvp-section{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
 }
 
-.padrino-arrow {
-font-size:1.2rem;
-color:var(--soft-gold);
-transition:transform .35s ease;
+.online-rsvp-section>img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
-.padrino-item.active .padrino-arrow {
-transform:rotate(180deg);
+.online-rsvp-button{
+  position:absolute;
+  z-index:999;
+  width:180px;
+  padding:9px 10px;
+  font-size:9px;
+  letter-spacing:1px;
+  top:74%;
+  left:50%;
+  transform:translate(-50%,-50%);
 }
+
+
+/* =========================================================
+   TALLY
+========================================================= */
 
-.padrino-content {
-display:grid;
-grid-template-rows:0fr;
-transition:grid-template-rows .4s ease;
+.tally-section{
+  background:#f7f3f7;
+  padding:30px 15px 45px;
+  text-align:center;
 }
 
-.padrino-item.active .padrino-content {
-grid-template-rows:1fr;
+.tally-title{
+  margin:0 0 22px;
+  color:#755a82;
+  font-family:
+    "Snell Roundhand",
+    "Brush Script MT",
+    "Segoe Script",
+    "Lucida Handwriting",
+    cursive;
+  font-size:36px;
+  font-weight:normal;
 }
 
-.padrino-content-inner {
-overflow:hidden;
+.tally-card{
+  position:relative;
+  width:92%;
+  max-width:426px;
+  margin:0 auto;
+  padding:6px;
+  background:rgba(255,255,255,.82);
+  border:1px solid #bda6c5;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(117,90,130,.10);
+  overflow:hidden;
 }
 
-.padrino-name {
-display:block;
-padding:0 25px 22px;
-font-family:'Cormorant Garamond',serif;
-font-size:1.7rem;
-color:white;
+.tally-card iframe{
+  width:92%;
+  height:550px;
+  border:none;
+  display:block;
+  margin:0 auto;
+  border-radius:12px;
 }
 
-/* ================================
-   FOTO DESTACADA
-================================ */
 
-.feature-photo {
-padding:70px 20px;
-background:var(--cream);
-}
+/* =========================================================
+   NOTE MODALS
+========================================================= */
 
-.feature-photo .photo-card {
-max-width:580px;
-margin:auto;
-border:10px solid white;
-outline:1px solid var(--gold);
-outline-offset:8px;
-background:white;
+.note-modal{
+  position:fixed;
+  inset:0;
+  z-index:31000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(48,39,52,.58);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
 }
 
-.feature-photo img {
-width:100%;
-height:auto;
-display:block;
-object-fit:contain;
+.note-modal.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
 }
 
-/* ================================
-   ITINERARIO
-================================ */
-
-.itinerary {
-text-align:center;
-background:var(--ivory);
+.note-modal-card{
+  position:relative;
+  width:min(92vw,540px);
+  max-height:88vh;
+  overflow:auto;
+  padding:45px 30px 32px;
+  background:#fdfaff;
+  border:1px solid #bda6c5;
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  transform:translateY(25px) scale(.96);
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1);
+  text-align:center;
 }
 
-.timeline {
-max-width:750px;
-margin:50px auto 0;
-position:relative;
+.note-modal.active .note-modal-card{
+  transform:translateY(0) scale(1);
 }
 
-.timeline::before {
-content:"";
-position:absolute;
-left:50%;
-top:0;
-bottom:0;
-width:1px;
-background:linear-gradient(var(--gold),transparent);
+.note-modal-close{
+  position:absolute;
+  top:13px;
+  right:15px;
+  width:40px;
+  height:40px;
+  border:none;
+  background:rgba(253,250,255,.9);
+  color:#755a82;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:29px;
+  line-height:38px;
+  cursor:pointer;
+  border-radius:50%;
 }
 
-.timeline-item {
-display:grid;
-grid-template-columns:1fr 70px 1fr;
-align-items:center;
-min-height:110px;
+.note-modal-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #c9b3d0;
+  border-radius:50%;
+  background:#f2ebf4;
+  font-size:28px;
 }
 
-.timeline-item:nth-child(odd) .timeline-info {
-grid-column:1;
-text-align:right;
+.note-modal-title{
+  margin:0 0 15px;
+  color:#755a82;
+  font-family:
+    "Snell Roundhand",
+    "Brush Script MT",
+    "Segoe Script",
+    "Lucida Handwriting",
+    cursive;
+  font-size:34px;
+  font-weight:normal;
+  line-height:1.15;
 }
 
-.timeline-item:nth-child(odd) .timeline-time {
-grid-column:3;
-text-align:left;
+.note-modal-text{
+  margin:0 auto;
+  max-width:430px;
+  color:#756b78;
+  font-size:15px;
+  line-height:1.7;
 }
 
-.timeline-item:nth-child(even) .timeline-time {
-grid-column:1;
-text-align:right;
-}
 
-.timeline-item:nth-child(even) .timeline-info {
-grid-column:3;
-text-align:left;
+/* =========================================================
+   GIFTS MODAL
+========================================================= */
+
+.bank-details{
+  margin:20px auto 0;
+  max-width:390px;
+  padding:18px;
+  border:1px solid #c9b3d0;
+  border-radius:16px;
+  background:#f6f0f7;
+  color:#756b78;
+  text-align:left;
+  font-size:13px;
+  line-height:1.8;
 }
 
-.timeline-dot {
-grid-column:2;
-grid-row:1;
-width:15px;
-height:15px;
-border-radius:50%;
-background:var(--gold);
-border:4px solid var(--ivory);
-margin:auto;
-box-shadow:0 0 0 1px var(--gold);
-z-index:2;
+.bank-details strong{
+  color:#755a82;
 }
+
+
+/* =========================================================
+   SPECIAL PAGES
+========================================================= */
 
-.timeline-info {
-font-family:'Cormorant Garamond',serif;
-font-size:1.6rem;
-color:var(--navy);
-text-transform:uppercase;
+.special-page{
+  display:none;
+  width:100%;
+  min-height:100vh;
+  background:#f7f3f7;
+  text-align:center;
+  padding-bottom:35px;
+  opacity:0;
 }
 
-.timeline-time {
-font-size:.8rem;
-letter-spacing:2px;
-color:var(--gold);
-font-weight:600;
+.special-page.active{
+  display:block;
+  animation:specialPageEnter 1.2s cubic-bezier(.22,1,.36,1) forwards;
 }
 
-/* ================================
-   UBICACIONES
-================================ */
+@keyframes specialPageEnter{
 
-.locations {
-background:linear-gradient(135deg,#f8f3eb,#fff);
-text-align:center;
-}
+  from{
+    opacity:0;
+    transform:translateY(35px) scale(.985);
+  }
 
-.location-grid {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-margin-top:50px;
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+
 }
 
-.location-card {
-background:white;
-padding:45px 30px;
-border:1px solid rgba(202,165,91,.45);
-box-shadow:0 18px 45px rgba(7,29,79,.08);
-position:relative;
+.special-page>img{
+  width:100%;
+  max-width:700px;
+  height:auto;
+  display:block;
+  margin:0 auto;
 }
 
-.location-card::before {
-content:"✦";
-position:absolute;
-top:-13px;
-left:50%;
-transform:translateX(-50%);
-background:white;
-padding:0 14px;
-color:var(--gold);
-font-size:1.4rem;
+.special-image-page{
+  position:relative;
+  width:100%;
+  max-width:700px;
+  margin:0 auto;
 }
 
-.location-card h3 {
-font-family:'Cormorant Garamond',serif;
-font-size:2rem;
-color:var(--navy);
-margin-bottom:15px;
+.special-image-page>img{
+  width:100%;
+  height:auto;
+  display:block;
 }
 
-.location-card p {
-line-height:1.7;
-margin-bottom:25px;
-font-size:.9rem;
+.back-button{
+  position:absolute;
+  z-index:999;
+  width:175px;
+  padding:9px 10px;
+  font-size:9px;
+  letter-spacing:1.2px;
+  left:50%;
+  transform:translateX(-50%);
 }
+
 
-/* ================================
-   BOTONES GENERALES
-================================ */
+/* =========================================================
+   CHURCH + RECEPTION
+========================================================= */
 
-.button {
-display:inline-flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-padding:15px 28px;
-background:var(--navy);
-color:white;
-font-size:.72rem;
-font-weight:600;
-letter-spacing:2px;
-text-transform:uppercase;
-border:1px solid var(--navy);
-transition:.35s ease;
-cursor:pointer;
-font-family:'Montserrat',sans-serif;
+.church-map{
+  top:36%;
 }
 
-.button:hover {
-background:var(--gold);
-border-color:var(--gold);
-transform:translateY(-2px);
+.reception-map{
+  top:68%;
 }
+
+.church-reception-back{
+  top:90%;
+}
+
 
-.button.gold {
-background:var(--gold);
-border-color:var(--gold);
+/* =========================================================
+   GODPARENTS
+========================================================= */
+
+.godparents-back{
+  top:91%;
 }
+
+
+/* =========================================================
+   COURT OF HONOR
+========================================================= */
 
-.button.outline {
-background:transparent;
-color:var(--navy);
-border-color:var(--gold);
+.court-honor-back{
+  top:91%;
 }
 
-.button.outline:hover {
-background:var(--navy);
-color:white;
-border-color:var(--navy);
+
+/* =========================================================
+   EVENT SCHEDULE
+========================================================= */
+
+.timeline-back{
+  top:91%;
 }
+
 
-/* ================================
+/* =========================================================
    DRESS CODE
-================================ */
-
-.dress-code {
-text-align:center;
-background:var(--navy);
-color:white;
-}
-
-.dress-code .section-title {
-color:white;
-}
-
-.dress-code .section-label {
-color:var(--soft-gold);
-}
-
-.dress-grid {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-max-width:600px;
-margin:40px auto;
-}
-
-.dress-item {
-padding:30px;
-border:1px solid rgba(234,215,164,.35);
-}
-
-.dress-item span {
-display:block;
-font-size:2rem;
-margin-bottom:10px;
-}
-
-.dress-item strong {
-font-family:'Cormorant Garamond',serif;
-font-size:1.7rem;
-font-weight:500;
-}
-
-/* ================================
-   PALETA
-================================ */
-
-.palette {
-display:flex;
-justify-content:center;
-gap:16px;
-flex-wrap:wrap;
-margin-top:35px;
-}
-
-.color-item {
-text-align:center;
-font-size:.65rem;
-letter-spacing:1px;
-text-transform:uppercase;
-}
-
-.color-circle {
-width:58px;
-height:58px;
-border-radius:50%;
-margin:0 auto 9px;
-border:2px solid rgba(255,255,255,.6);
-box-shadow:0 5px 15px rgba(0,0,0,.25);
-}
-
-/* ================================
-   MESA DE REGALOS
-================================ */
-
-.gifts {
-text-align:center;
-background:var(--cream);
-}
-
-.gift-buttons {
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
-margin-top:35px;
-}
-
-/* ================================
-   LLUVIA DE SOBRES
-================================ */
-
-.envelopes {
-background:linear-gradient(145deg,#123b8f,#071d4f);
-color:white;
-text-align:center;
-}
-
-.envelopes .section-title {
-color:white;
-}
-
-.envelopes .section-label {
-color:var(--soft-gold);
-}
-
-/* ================================
-   GALERÍA
-================================ */
-
-.gallery {
-background:var(--ivory);
-text-align:center;
-}
-
-.slider {
-max-width:850px;
-margin:50px auto 0;
-position:relative;
-}
-
-.slides {
-position:relative;
-overflow:hidden;
-aspect-ratio:4/5;
-box-shadow:0 25px 70px rgba(7,29,79,.18);
-border:8px solid white;
-outline:1px solid var(--gold);
-outline-offset:8px;
-}
-
-.slide {
-position:absolute;
-inset:0;
-opacity:0;
-transition:opacity 1.2s ease;
-}
-
-.slide.active {
-opacity:1;
-}
-
-.slide img {
-height:100%;
-object-fit:cover;
-}
-
-.slider-controls {
-display:flex;
-justify-content:center;
-align-items:center;
-gap:20px;
-margin-top:28px;
-}
-
-.slider-btn {
-width:44px;
-height:44px;
-border-radius:50%;
-border:1px solid var(--gold);
-background:white;
-color:var(--navy);
-font-size:1.2rem;
-cursor:pointer;
-transition:.3s;
-}
-
-.slider-btn:hover {
-background:var(--gold);
-color:white;
-}
-
-.dots {
-display:flex;
-gap:8px;
-}
-
-.dot {
-width:8px;
-height:8px;
-border-radius:50%;
-background:#d9d0c0;
-transition:.3s;
-cursor:pointer;
-}
-
-.dot.active {
-background:var(--gold);
-transform:scale(1.35);
-}
-
-/* ================================
-   RSVP
-================================ */
-
-.rsvp {
-text-align:center;
-background:linear-gradient(135deg,#f8f2e7,#fffdf8);
-}
-
-.rsvp-message {
-max-width:720px;
-margin:0 auto 30px;
-}
-
-.tally-wrapper {
-max-width:560px;
-margin:25px auto 0;
-background:white;
-box-shadow:0 20px 60px rgba(7,29,79,.1);
-border:1px solid rgba(202,165,91,.35);
-overflow:hidden;
-}
-
-.tally-wrapper iframe {
-width:100%;
-height:500px;
-border:none;
-display:block;
-}
-
-/* ================================
-   CONTACTO RSVP
-================================ */
-
-.contact-section {
-background:var(--navy);
-color:white;
-text-align:center;
-}
-
-.contact-section .section-title {
-color:white;
-}
-
-.contact-section .section-label {
-color:var(--soft-gold);
-}
-
-.contact-section .text {
-color:rgba(255,255,255,.85);
-}
-
-.contact-grid {
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-max-width:850px;
-margin:50px auto 0;
-}
-
-.contact-card {
-position:relative;
-}
-
-.contact-photo {
-padding:10px;
-border:1px solid rgba(234,215,164,.55);
-margin-bottom:25px;
-}
-
-.contact-photo img {
-aspect-ratio:4/5;
-object-fit:cover;
-}
-
-.contact-card h3 {
-font-family:'Cormorant Garamond',serif;
-font-size:2rem;
-font-weight:500;
-margin-bottom:18px;
-}
-
-.contact-card .button {
-background:var(--gold);
-border-color:var(--gold);
-}
-
-/* ================================
-   FINAL
-================================ */
-
-.final {
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:70px 20px;
-background:
-linear-gradient(to bottom,rgba(7,29,79,.28),rgba(7,29,79,.75)),
-url('sample/XV_Gallery_10_Final.png') center/cover no-repeat;
-color:white;
-}
-
-.final-content {
-max-width:750px;
-padding:60px 30px;
-border:1px solid rgba(234,215,164,.7);
-background:rgba(7,29,79,.2);
-backdrop-filter:blur(3px);
-}
-
-.final h2 {
-font-family:'Great Vibes',cursive;
-font-size:clamp(4.5rem,11vw,8rem);
-font-weight:400;
-color:white;
-line-height:.9;
-}
-
-.final p {
-font-family:'Cormorant Garamond',serif;
-font-size:clamp(1.5rem,3vw,2rem);
-line-height:1.4;
-margin:30px auto;
-}
-
-/* ================================
-   FOOTER
-================================ */
-
-.footer {
-padding:35px 20px;
-background:#061637;
-text-align:center;
-}
-
-.boreal-button {
-display:flex;
-align-items:center;
-justify-content:center;
-width:min(100%,650px);
-margin:auto;
-padding:16px 25px;
-border:1px solid rgba(234,215,164,.45);
-color:rgba(255,255,255,.8);
-font-size:.67rem;
-letter-spacing:2px;
-text-transform:uppercase;
-transition:.3s;
-}
-
-.boreal-button:hover {
-background:rgba(255,255,255,.08);
-color:white;
-}
-
-/* ================================
-   MODALES GENERALES
-================================ */
-
-.modal {
-position:fixed;
-inset:0;
-background:rgba(3,10,28,.78);
-z-index:100;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-opacity:0;
-visibility:hidden;
-transition:.35s ease;
-}
-
-.modal.show {
-opacity:1;
-visibility:visible;
-}
-
-.modal-box {
-position:relative;
-width:min(100%,520px);
-background:var(--ivory);
-padding:50px 30px;
-text-align:center;
-box-shadow:0 30px 100px rgba(0,0,0,.4);
-border:1px solid var(--gold);
-transform:translateY(20px);
-transition:.35s ease;
-}
-
-.modal.show .modal-box {
-transform:translateY(0);
-}
-
-.modal-box h3 {
-font-family:'Cormorant Garamond',serif;
-font-size:2.5rem;
-color:var(--navy);
-margin-bottom:20px;
-}
-
-.close-modal {
-position:absolute;
-top:10px;
-right:15px;
-border:none;
-background:none;
-font-size:2rem;
-color:var(--navy);
-cursor:pointer;
-z-index:5;
-}
-
-/* ================================
-   MODAL TRANSFERENCIA
-================================ */
-
-.transfer-info {
-margin:25px 0;
-padding:20px;
-background:white;
-border:1px solid rgba(202,165,91,.35);
-line-height:2;
-font-size:.9rem;
-}
-
-/* ================================
-   MODAL MAPA
-================================ */
-
-.map-modal-box {
-width:min(100%,950px);
-height:min(88vh,720px);
-padding:0;
-background:white;
-overflow:hidden;
-display:flex;
-flex-direction:column;
-}
-
-.map-header {
-padding:22px 60px 18px 25px;
-background:var(--ivory);
-border-bottom:1px solid rgba(202,165,91,.35);
-text-align:left;
-}
-
-.map-header h3 {
-font-size:2rem;
-margin:0;
-}
-
-.map-header p {
-font-size:.82rem;
-line-height:1.5;
-margin-top:5px;
-color:var(--text);
-}
-
-.map-container {
-flex:1;
-min-height:400px;
-}
-
-.map-container iframe {
-width:100%;
-height:100%;
-border:0;
-display:block;
-}
-
-.map-actions {
-padding:15px;
-background:white;
-border-top:1px solid rgba(202,165,91,.25);
-}
-
-/* ================================
-   RESPONSIVE
-================================ */
-
-@media (max-width:700px) {
-
-section {
-padding:75px 18px;
-}
-
-.hero-content {
-padding:45px 18px;
-}
-
-.parents-grid,
-.location-grid,
-.dress-grid,
-.contact-grid {
-grid-template-columns:1fr;
-}
-
-.parents-grid {
-gap:35px;
-}
-
-/* COUNTDOWN MOBILE - MANTIENE CUADRITOS */
-
-.countdown {
-grid-template-columns:repeat(4,1fr);
-gap:8px;
-max-width:520px;
-margin-top:45px;
-}
-
-.countdown-item {
-padding:28px 8px 22px;
-}
-
-.countdown-number {
-font-size:3.5rem;
-}
-
-.countdown-label {
-font-size:.58rem;
-letter-spacing:2px;
-}
-
-.timeline-item {
-grid-template-columns:1fr 45px 1fr;
-}
-
-.timeline-info {
-font-size:1.2rem;
-}
-
-.timeline-time {
-font-size:.65rem;
-letter-spacing:1px;
-}
-
-.timeline::before {
-left:50%;
-}
+========================================================= */
+
+.dress-code-back{
+  top:91%;
+}
+
+
+/* =========================================================
+   ACCOMMODATIONS
+========================================================= */
+
+.hotel-button{
+  position:absolute;
+  width:125px;
+  padding:8px 9px;
+  font-size:8px;
+  letter-spacing:1px;
+  z-index:999;
+}
+
+.hotel-one{
+  top:37%;
+  left:68%;
+  transform:translate(-50%,-50%);
+}
+
+.hotel-two{
+  top:63%;
+  left:68%;
+  transform:translate(-50%,-50%);
+}
+
+.accommodations-back{
+  top:89%;
+}
+
+
+/* =========================================================
+   MAP MODAL
+========================================================= */
+
+.map-modal{
+  position:fixed;
+  inset:0;
+  z-index:30000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(48,39,52,.58);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:
+    opacity .35s ease,
+    visibility .35s ease;
+}
+
+.map-modal.active{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.map-modal-card{
+  position:relative;
+  width:min(92vw,620px);
+  max-height:90vh;
+  overflow:hidden;
+  background:#fdfaff;
+  border:1px solid #bda6c5;
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+  transform:translateY(25px) scale(.96);
+  transition:
+    transform .45s cubic-bezier(.22,1,.36,1);
+  text-align:center;
+}
+
+.map-modal.active .map-modal-card{
+  transform:translateY(0) scale(1);
+}
+
+.map-modal-close{
+  position:absolute;
+  top:14px;
+  right:16px;
+  z-index:10;
+  width:40px;
+  height:40px;
+  border:none;
+  background:rgba(253,250,255,.9);
+  color:#755a82;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:30px;
+  line-height:38px;
+  cursor:pointer;
+  border-radius:50%;
+}
 
-.slides {
-aspect-ratio:3/4;
-}
-
-.tally-wrapper {
-max-width:100%;
-}
-
-.tally-wrapper iframe {
-height:480px;
-}
-
-.music-button {
-right:14px;
-bottom:14px;
-padding:11px 14px;
-}
-
-.map-modal-box {
-height:85vh;
-}
-
-.map-header {
-padding:20px 50px 15px 18px;
-}
+.map-preview{
+  width:100%;
+  height:245px;
+  border:none;
+  display:block;
+  background:#eee7ef;
+}
+
+.map-modal-content{
+  padding:24px 25px 27px;
+}
+
+.map-modal-icon{
+  width:62px;
+  height:62px;
+  margin:-55px auto 13px;
+  position:relative;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #c9b3d0;
+  border-radius:50%;
+  background:#f2ebf4;
+  font-size:29px;
+}
+
+.map-modal-title{
+  margin:0 0 10px;
+  color:#755a82;
+  font-size:26px;
+  font-weight:normal;
+}
+
+.map-modal-description{
+  margin:0 auto 22px;
+  max-width:470px;
+  color:#756b78;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.map-open-button{
+  display:block;
+  width:100%;
+  padding:13px 16px;
+  border:1px solid #9c7aa8;
+  border-radius:30px;
+  background:#fff;
+  color:#755a82;
+  text-decoration:none;
+  font-size:11px;
+  letter-spacing:1.8px;
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+#musicButton{
+  position:fixed;
+  right:18px;
+  bottom:22px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid rgba(117,90,130,.35);
+  background:rgba(255,250,255,.92);
+  color:#755a82;
+  font-size:21px;
+  cursor:pointer;
+  z-index:9999;
+  box-shadow:0 4px 14px rgba(0,0,0,.15);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+  .envelope-stage{
+    width:min(100vw,70.64dvh);
+  }
+
+  .big-day-button{
+    width:120px;
+    font-size:8px;
+    padding:7px 5px;
+  }
+
+  .big-day-countdown{
+    width:95%;
+  }
+
+  .big-day-countdown-title{
+    font-size:10px;
+    margin-bottom:7px;
+  }
+
+  .big-day-countdown-boxes{
+    gap:5px;
+  }
+
+  .big-day-countdown-box{
+    min-width:43px;
+    padding:5px 4px;
+  }
+
+  .big-day-countdown-number{
+    font-size:15px;
+  }
+
+  .big-day-countdown-label{
+    font-size:6px;
+  }
+
+  .details-section{
+    padding:45px 14px 50px;
+  }
+
+  .details-title{
+    font-size:36px;
+  }
+
+  .details-subtitle{
+    font-size:9px;
+    margin-bottom:23px;
+  }
+
+  .details-buttons{
+    gap:8px;
+  }
+
+  .details-button{
+    min-height:56px;
+    padding:10px 6px;
+    font-size:7px;
+    letter-spacing:.7px;
+  }
+
+  .gifts-button{
+    width:95px;
+    font-size:6px;
+    padding:7px 4px;
+  }
+
+  .wedding-notes-section{
+    padding:40px 12px 45px;
+  }
+
+  .wedding-notes-title{
+    font-size:35px;
+  }
+
+  .wedding-notes-subtitle{
+    font-size:9px;
+    letter-spacing:1px;
+  }
+
+  .wedding-notes-buttons{
+    gap:8px;
+  }
+
+  .wedding-note-button{
+    min-height:65px;
+    padding:10px 5px;
+    font-size:7px;
+    letter-spacing:.7px;
+  }
+
+  .wedding-note-button span{
+    font-size:16px;
+  }
+
+  .online-rsvp-button{
+    width:155px;
+    font-size:8px;
+  }
+
+  .back-button{
+    width:160px;
+    font-size:8px;
+  }
+
+  .hotel-button{
+    width:100px;
+    font-size:7px;
+  }
+
+  .note-modal{
+    padding:15px;
+  }
+
+  .note-modal-card{
+    width:94vw;
+    max-height:88vh;
+    padding:42px 21px 27px;
+    border-radius:24px;
+  }
+
+  .note-modal-title{
+    font-size:30px;
+  }
+
+  .note-modal-text{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .map-modal{
+    padding:15px;
+  }
+
+  .map-modal-card{
+    width:94vw;
+    max-height:88vh;
+    border-radius:24px;
+  }
+
+  .map-preview{
+    height:210px;
+  }
+
+  .map-modal-content{
+    padding:22px 20px 24px;
+  }
+
+  .map-modal-title{
+    font-size:23px;
+  }
+
+  .map-modal-description{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .tally-section{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .tally-card{
+    width:90%;
+    padding:6px;
+    border-radius:14px;
+  }
+
+  .tally-card iframe{
+    height:550px;
+    border-radius:10px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
 
-.map-header h3 {
-font-size:1.6rem;
 }
-
-.map-container {
-min-height:350px;
-}
-
-.padrino-toggle {
-padding:18px 18px;
-}
-
-.padrino-role {
-font-size:.65rem;
-letter-spacing:2px;
-}
-
-.padrino-name {
-padding:0 18px 20px;
-font-size:1.45rem;
-}
-
-}
-
-/* ================================
-   FIN CSS
-================================ */
 
 </style>
-
 </head>
 
 <body>
 
-<!-- ================================
-     MÚSICA
-================================ -->
 
-<audio id="backgroundMusic" loop>
-<source src="sample/musica.mp3" type="audio/mpeg">
+<!-- =======================================================
+     ENVELOPE INTRO
+======================================================= -->
+
+<div id="envelopeIntro">
+
+  <div class="envelope-stage">
+
+    <img class="envelope-base"
+         src="anasofia/base-for-animation.png"
+         alt="Ana Sofía XV invitation">
+
+    <img class="envelope-glow"
+         src="anasofia/envelope-glow.png"
+         alt="">
+
+    <img class="envelope-card"
+         src="anasofia/invitation-card.png"
+         alt="Ana Sofía XV invitation">
+
+    <img class="envelope-body"
+         src="anasofia/envelope-body.png"
+         alt="">
+
+    <img class="envelope-flap"
+         src="anasofia/flap-animation.png"
+         alt="">
+
+    <img class="envelope-seal"
+         id="envelopeSeal"
+         src="anasofia/seal-animation.png"
+         alt="Open invitation">
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MAIN INVITATION
+======================================================= -->
+
+<main id="mainInvitation">
+
+<div class="invitation">
+
+
+  <!-- =====================================================
+       COVER
+  ====================================================== -->
+
+  <div class="page cover-page">
+
+    <img src="anasofia/portada.png"
+         alt="Ana Sofía XV Years">
+
+  </div>
+
+
+  <!-- =====================================================
+       SAVE THE DATE
+  ====================================================== -->
+
+  <div class="page reveal-target">
+
+    <img src="anasofia/save-date.png"
+         alt="Save the Date">
+
+  </div>
+
+
+  <!-- =====================================================
+       PARENTS
+  ====================================================== -->
+
+  <div class="page reveal-target">
+
+    <img src="anasofia/parents.png"
+         alt="Parents">
+
+  </div>
+
+
+  <!-- =====================================================
+       THE BIG DAY
+  ====================================================== -->
+
+  <section class="big-day-section reveal-target"
+           id="big-day">
+
+    <img src="anasofia/big-day.png"
+         alt="The Big Day">
+
+
+    <!-- COUNTDOWN -->
+
+    <div class="big-day-countdown">
+
+      <div class="big-day-countdown-title">
+        THE COUNTDOWN BEGINS
+      </div>
+
+      <div class="big-day-countdown-boxes">
+
+        <div class="big-day-countdown-box">
+
+          <span class="big-day-countdown-number"
+                id="days">
+            0
+          </span>
+
+          <span class="big-day-countdown-label">
+            Days
+          </span>
+
+        </div>
+
+        <div class="big-day-countdown-box">
+
+          <span class="big-day-countdown-number"
+                id="hours">
+            0
+          </span>
+
+          <span class="big-day-countdown-label">
+            Hours
+          </span>
+
+        </div>
+
+        <div class="big-day-countdown-box">
+
+          <span class="big-day-countdown-number"
+                id="minutes">
+            0
+          </span>
+
+          <span class="big-day-countdown-label">
+            Minutes
+          </span>
+
+        </div>
+
+        <div class="big-day-countdown-box">
+
+          <span class="big-day-countdown-number"
+                id="seconds">
+            0
+          </span>
+
+          <span class="big-day-countdown-label">
+            Seconds
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ADD TO CALENDAR -->
+
+    <a class="invitation-button big-day-button big-day-calendar"
+       href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ana%20Sof%C3%ADa%27s%20XV%20Years&dates=20270130/20270131"
+       target="_blank"
+       rel="noopener">
+
+      ADD TO CALENDAR
+
+    </a>
+
+
+    <!-- VIEW DETAILS -->
+
+    <a href="#church-reception"
+       class="invitation-button big-day-button big-day-details special-link"
+       data-page="church-reception"
+       data-return="big-day">
+
+      VIEW DETAILS
+
+    </a>
+
+  </section>
+
+
+  <!-- =====================================================
+       THE DETAILS
+  ====================================================== -->
+
+  <section class="details-section reveal-target"
+           id="details-section">
+
+    <h2 class="details-title">
+      The Details
+    </h2>
+
+    <p class="details-subtitle">
+      A few more details for the celebration
+    </p>
+
+
+    <div class="details-buttons">
+
+      <a href="#godparents"
+         class="details-button special-link"
+         data-page="godparents"
+         data-return="details-section">
+
+        MY GODPARENTS
+
+      </a>
+
+
+      <a href="#court-honor"
+         class="details-button special-link"
+         data-page="court-honor"
+         data-return="details-section">
+
+        MY COURT OF HONOR
+
+      </a>
+
+
+      <a href="#timeline"
+         class="details-button special-link"
+         data-page="timeline"
+         data-return="details-section">
+
+        VIEW EVENT SCHEDULE
+
+      </a>
+
+
+      <a href="#dress-code"
+         class="details-button special-link"
+         data-page="dress-code"
+         data-return="details-section">
+
+        VIEW DRESS CODE
+
+      </a>
+
+
+      <a href="#accommodations"
+         class="details-button special-link"
+         data-page="accommodations"
+         data-return="details-section">
+
+        VIEW ACCOMMODATIONS
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       GIFTS + RSVP
+  ====================================================== -->
+
+  <section class="gifts-rsvp-section reveal-target"
+           id="gifts-rsvp">
+
+    <img src="anasofia/gifts-rsvp.png"
+         alt="Gifts and RSVP">
+
+
+    <!-- VIEW REGISTRY -->
+
+    <a class="gifts-button gifts-registry"
+       href="#"
+       target="_blank"
+       rel="noopener">
+
+      VIEW REGISTRY
+
+    </a>
+
+
+    <!-- VIEW BANK DETAILS -->
+
+    <button type="button"
+            class="gifts-button gifts-bank"
+            id="openBankModal">
+
+      VIEW BANK DETAILS
+
+    </button>
+
+
+    <!-- RSVP EMAIL -->
+
+    <a class="gifts-button gifts-email"
+       href="mailto:">
+
+      RSVP BY EMAIL
+
+    </a>
+
+
+    <!-- RSVP TEXT -->
+
+    <a class="gifts-button gifts-text"
+       href="sms:">
+
+      TEXT TO RSVP
+
+    </a>
+
+
+    <!-- RSVP FORM -->
+
+    <a href="#rsvp-form"
+       class="gifts-button gifts-form">
+
+      COMPLETE RSVP FORM
+
+    </a>
+
+  </section>
+
+
+  <!-- =====================================================
+       A FEW NOTES
+  ====================================================== -->
+
+  <section class="wedding-notes-section reveal-target">
+
+    <h2 class="wedding-notes-title">
+      A Few Notes
+    </h2>
+
+    <p class="wedding-notes-subtitle">
+      A few little details to help us celebrate together
+    </p>
+
+
+    <div class="wedding-notes-buttons">
+
+
+      <!-- UNPLUGGED CEREMONY -->
+
+      <button type="button"
+              class="wedding-note-button note-popup-trigger"
+              data-note="unplugged">
+
+        <span>📵</span>
+
+        <strong>
+          UNPLUGGED<br>
+          CEREMONY
+        </strong>
+
+      </button>
+
+
+      <!-- ADULTS ONLY -->
+
+      <button type="button"
+              class="wedding-note-button note-popup-trigger"
+              data-note="adults">
+
+        <span>🤍</span>
+
+        <strong>
+          ADULTS-ONLY<br>
+          CELEBRATION
+        </strong>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       GALLERY
+  ====================================================== -->
+
+  <div class="page reveal-target">
+
+    <img src="anasofia/gallery.png"
+         alt="Gallery">
+
+  </div>
+
+
+  <!-- =====================================================
+       ONLINE RSVP
+  ====================================================== -->
+
+  <section class="online-rsvp-section reveal-target">
+
+    <img src="anasofia/online-rsvp.png"
+         alt="Online RSVP">
+
+    <a href="#rsvp-form"
+       class="invitation-button online-rsvp-button">
+
+      COMPLETE RSVP FORM
+
+    </a>
+
+  </section>
+
+
+  <!-- =====================================================
+       TALLY RSVP FORM
+  ====================================================== -->
+
+  <section class="tally-section reveal-target"
+           id="rsvp-form">
+
+    <h2 class="tally-title">
+      RSVP
+    </h2>
+
+    <div class="tally-card">
+
+      <!-- REPLACE WITH ANA SOFIA TALLY LINK -->
+
+      <iframe
+        src="https://tally.so/embed/PLACEHOLDER?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        loading="lazy"
+        title="Ana Sofía XV Online RSVP">
+      </iframe>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       END
+  ====================================================== -->
+
+  <div class="page reveal-target">
+
+    <img src="anasofia/end.png"
+         alt="Thank You">
+
+  </div>
+
+
+</div>
+
+</main>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — CHURCH + RECEPTION
+======================================================= -->
+
+<section id="church-reception"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/church-reception.png"
+         alt="Church and Reception">
+
+
+    <!-- CHURCH MAP -->
+
+    <button type="button"
+            class="back-button church-map map-popup-trigger"
+            data-title="Church"
+            data-description="View the ceremony location and directions."
+            data-map=""
+            data-url="#">
+
+      VIEW MAP
+
+    </button>
+
+
+    <!-- RECEPTION MAP -->
+
+    <button type="button"
+            class="back-button reception-map map-popup-trigger"
+            data-title="Reception"
+            data-description="View the reception location and directions."
+            data-map=""
+            data-url="#">
+
+      VIEW MAP
+
+    </button>
+
+
+    <!-- BACK -->
+
+    <a href="#big-day"
+       class="back-button church-reception-back back-to-main"
+       data-return="big-day">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — GODPARENTS
+======================================================= -->
+
+<section id="godparents"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/godparents.png"
+         alt="Godparents">
+
+    <a href="#details-section"
+       class="back-button godparents-back back-to-main"
+       data-return="details-section">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — COURT OF HONOR
+======================================================= -->
+
+<section id="court-honor"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/court-honor.png"
+         alt="Court of Honor">
+
+    <a href="#details-section"
+       class="back-button court-honor-back back-to-main"
+       data-return="details-section">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — EVENT SCHEDULE
+======================================================= -->
+
+<section id="timeline"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/timeline.png"
+         alt="Event Schedule">
+
+    <a href="#details-section"
+       class="back-button timeline-back back-to-main"
+       data-return="details-section">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — DRESS CODE
+======================================================= -->
+
+<section id="dress-code"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/dress-code.png"
+         alt="Dress Code">
+
+    <a href="#details-section"
+       class="back-button dress-code-back back-to-main"
+       data-return="details-section">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     SPECIAL PAGE — ACCOMMODATIONS
+======================================================= -->
+
+<section id="accommodations"
+         class="special-page">
+
+  <div class="special-image-page">
+
+    <img src="anasofia/accommodations.png"
+         alt="Accommodations">
+
+
+    <!-- HOTEL ONE -->
+
+    <button type="button"
+            class="hotel-button hotel-one map-popup-trigger"
+            data-title="Hotel"
+            data-description="View the hotel location and directions."
+            data-map=""
+            data-url="#">
+
+      VIEW MAP
+
+    </button>
+
+
+    <!-- HOTEL TWO -->
+
+    <button type="button"
+            class="hotel-button hotel-two map-popup-trigger"
+            data-title="Hotel"
+            data-description="View the hotel location and directions."
+            data-map=""
+            data-url="#">
+
+      VIEW MAP
+
+    </button>
+
+
+    <!-- BACK -->
+
+    <a href="#details-section"
+       class="back-button accommodations-back back-to-main"
+       data-return="details-section">
+
+      BACK TO INVITATION
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =======================================================
+     NOTE MODAL — UNPLUGGED CEREMONY
+======================================================= -->
+
+<div id="unpluggedModal"
+     class="note-modal"
+     aria-hidden="true">
+
+  <div class="note-modal-card"
+       role="dialog"
+       aria-modal="true">
+
+    <button type="button"
+            class="note-modal-close"
+            data-close-note="unpluggedModal"
+            aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <div class="note-modal-icon">
+      📵
+    </div>
+
+
+    <h2 class="note-modal-title">
+      Unplugged Ceremony
+    </h2>
+
+
+    <p class="note-modal-text">
+
+      We kindly invite you to be fully present
+      during this special moment.
+
+      <br><br>
+
+      Please silence and put away your phones
+      and cameras so we can celebrate together,
+      uninterrupted.
+
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     NOTE MODAL — ADULTS ONLY
+======================================================= -->
+
+<div id="adultsModal"
+     class="note-modal"
+     aria-hidden="true">
+
+  <div class="note-modal-card"
+       role="dialog"
+       aria-modal="true">
+
+    <button type="button"
+            class="note-modal-close"
+            data-close-note="adultsModal"
+            aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <div class="note-modal-icon">
+      🤍
+    </div>
+
+
+    <h2 class="note-modal-title">
+      Adults-Only Celebration
+    </h2>
+
+
+    <p class="note-modal-text">
+
+      We love your little ones, but this celebration
+      will be an adults-only event.
+
+      <br><br>
+
+      Thank you for understanding and helping us
+      make this an unforgettable celebration.
+
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     BANK DETAILS MODAL
+======================================================= -->
+
+<div id="bankModal"
+     class="note-modal"
+     aria-hidden="true">
+
+  <div class="note-modal-card"
+       role="dialog"
+       aria-modal="true">
+
+    <button type="button"
+            class="note-modal-close"
+            id="closeBankModal"
+            aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <div class="note-modal-icon">
+      🎁
+    </div>
+
+
+    <h2 class="note-modal-title">
+      Bank Details
+    </h2>
+
+
+    <p class="note-modal-text">
+
+      Thank you for thinking of me on this
+      special occasion.
+
+    </p>
+
+
+    <div class="bank-details">
+
+      <strong>
+        Bank Transfer Information
+      </strong>
+
+      <br><br>
+
+      <strong>
+        Account Name:
+      </strong>
+
+      ____________________
+
+      <br>
+
+      <strong>
+        Bank:
+      </strong>
+
+      ____________________
+
+      <br>
+
+      <strong>
+        Account Number:
+      </strong>
+
+      ____________________
+
+      <br>
+
+      <strong>
+        Routing Number:
+      </strong>
+
+      ____________________
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MAP MODAL
+======================================================= -->
+
+<div id="mapModal"
+     class="map-modal"
+     aria-hidden="true">
+
+  <div class="map-modal-card"
+       role="dialog"
+       aria-modal="true">
+
+
+    <button type="button"
+            class="map-modal-close"
+            id="mapModalClose"
+            aria-label="Close">
+
+      ×
+
+    </button>
+
+
+    <iframe id="mapPreview"
+            class="map-preview"
+            loading="lazy"
+            title="Location map">
+    </iframe>
+
+
+    <div class="map-modal-content">
+
+      <div class="map-modal-icon">
+        📍
+      </div>
+
+
+      <h2 id="mapModalTitle"
+          class="map-modal-title">
+
+        Location
+
+      </h2>
+
+
+      <p id="mapModalDescription"
+         class="map-modal-description">
+
+        View the location and directions.
+
+      </p>
+
+
+      <a id="mapOpenButton"
+         class="map-open-button"
+         href="#"
+         target="_blank"
+         rel="noopener">
+
+        OPEN IN GOOGLE MAPS
+
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MUSIC
+======================================================= -->
+
+<audio id="weddingMusic"
+       loop
+       preload="auto">
+
+  <source src="anasofia/musica.mp3"
+          type="audio/mpeg">
+
 </audio>
 
-<button class="music-button" id="musicButton" aria-label="Activar música">
-<span id="musicIcon">♫</span>
-<span class="music-text">Música</span>
-</button>
 
-<!-- ================================
-     HERO
-================================ -->
+<button id="musicButton"
+        type="button"
+        aria-label="Play music">
 
-<section class="hero">
-
-<div class="butterfly" style="top:12%;left:10%;">🦋</div>
-<div class="butterfly" style="top:25%;right:10%;">🦋</div>
-<div class="butterfly" style="bottom:18%;left:18%;">🦋</div>
-
-<div class="hero-content">
-
-<div class="hero-small">Mis XV Años</div>
-
-<h1>Ana Sofía</h1>
-
-<div class="hero-divider"></div>
-
-<p>
-Una noche para soñar,<br>
-un momento para recordar
-</p>
-
-<div class="hero-date">
-Sábado · 30 de Enero · 2027
-</div>
-
-</div>
-
-<div class="scroll-down">Desliza ↓</div>
-
-</section>
-
-<!-- ================================
-     INTRODUCCIÓN
-================================ -->
-
-<section class="intro">
-
-<div class="container reveal">
-
-<div class="section-label">
-Hoy dejo atrás mi niñez para dar un paso hacia mi juventud
-</div>
-
-<div class="script">
-¡Vente a mis 15!
-</div>
-
-<div class="gold-line"></div>
-
-<p class="text">
-Con gran alegría e ilusión, tengo el honor de invitarte a la celebración de mis quince años.
-</p>
-
-<div class="gold-line"></div>
-
-<p class="text">
-<strong>
-Sábado 30 de Enero de 2027 · 6:00 PM
-</strong>
-</p>
-
-</div>
-
-</section>
-
-<!-- ================================
-     COUNTDOWN
-================================ -->
-
-<section class="countdown-section">
-
-<div class="butterfly" style="top:10%;left:8%;">🦋</div>
-<div class="butterfly" style="bottom:12%;right:8%;">🦋</div>
-
-<div class="container reveal">
-
-<div class="section-label">
-La cuenta regresiva ha comenzado
-</div>
-
-<h2 class="section-title">
-Faltan...
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="countdown">
-
-<div class="countdown-item">
-<span class="countdown-number" id="days">00</span>
-<span class="countdown-label">Días</span>
-</div>
-
-<div class="countdown-item">
-<span class="countdown-number" id="hours">00</span>
-<span class="countdown-label">Horas</span>
-</div>
-
-<div class="countdown-item">
-<span class="countdown-number" id="minutes">00</span>
-<span class="countdown-label">Minutos</span>
-</div>
-
-<div class="countdown-item">
-<span class="countdown-number" id="seconds">00</span>
-<span class="countdown-label">Segundos</span>
-</div>
-
-</div>
-
-<button class="button gold calendar-button" id="calendarButton">
-✦ Agregar al calendario
-</button>
-
-</div>
-
-</section>
-
-<!-- ================================
-     PADRES
-================================ -->
-
-<section>
-
-<div class="butterfly" style="top:10%;right:8%;">🦋</div>
-
-<div class="container parents-grid reveal">
-
-<div class="floral-frame">
-
-<div class="photo-card">
-<img src="sample/XV_Gallery_08_Parents.png" alt="Quinceañera con sus padres">
-</div>
-
-</div>
-
-<div class="parents-text">
-
-<div class="section-label">
-Con la bendición de Dios
-</div>
-
-<h2 class="section-title">
-Y de mis padres
-</h2>
-
-<div class="gold-line"></div>
-
-<h3>Alberto Sánchez</h3>
-
-<div class="script" style="font-size:2.8rem;">
-&
-</div>
-
-<h3>Erika Salas</h3>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     PADRINOS DESPLEGABLES
-================================ -->
-
-<section class="padrinos">
-
-<div class="butterfly" style="top:12%;left:8%;">🦋</div>
-
-<div class="container reveal">
-
-<div class="section-label">
-Con cariño y gratitud
-</div>
-
-<h2 class="section-title">
-Mis Padrinos
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="padrinos-list">
-
-<!-- PADRINO 1 -->
-
-<div class="padrino-item">
-
-<button class="padrino-toggle">
-
-<span class="padrino-role">
-Velación
-</span>
-
-<span class="padrino-arrow">
-⌄
-</span>
+  🎵
 
 </button>
 
-<div class="padrino-content">
-<div class="padrino-content-inner">
-
-<span class="padrino-name">
-Samuel Hernández & Liliana López
-</span>
-
-</div>
-</div>
-
-</div>
-
-<!-- PADRINO 2 -->
-
-<div class="padrino-item">
-
-<button class="padrino-toggle">
-
-<span class="padrino-role">
-Anillo y Corona
-</span>
-
-<span class="padrino-arrow">
-⌄
-</span>
-
-</button>
-
-<div class="padrino-content">
-<div class="padrino-content-inner">
-
-<span class="padrino-name">
-Fernando Morales & Andrea Reyes
-</span>
-
-</div>
-</div>
-
-</div>
-
-<!-- PADRINO 3 -->
-
-<div class="padrino-item">
-
-<button class="padrino-toggle">
-
-<span class="padrino-role">
-Vestido y Zapatillas
-</span>
-
-<span class="padrino-arrow">
-⌄
-</span>
-
-</button>
-
-<div class="padrino-content">
-<div class="padrino-content-inner">
-
-<span class="padrino-name">
-Enrique López & Ana Hernández
-</span>
-
-</div>
-</div>
-
-</div>
-
-<!-- PADRINO 4 -->
-
-<div class="padrino-item">
-
-<button class="padrino-toggle">
-
-<span class="padrino-role">
-Pastel
-</span>
-
-<span class="padrino-arrow">
-⌄
-</span>
-
-</button>
-
-<div class="padrino-content">
-<div class="padrino-content-inner">
-
-<span class="padrino-name">
-Enrique López & Ana Hernández
-</span>
-
-</div>
-</div>
-
-</div>
-
-<!-- PADRINO 5 -->
-
-<div class="padrino-item">
-
-<button class="padrino-toggle">
-
-<span class="padrino-role">
-Brindis
-</span>
-
-<span class="padrino-arrow">
-⌄
-</span>
-
-</button>
-
-<div class="padrino-content">
-<div class="padrino-content-inner">
-
-<span class="padrino-name">
-Marcos Sánchez & Sofía Martínez
-</span>
-
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     FOTO DESTACADA
-================================ -->
-
-<section class="feature-photo">
-
-<div class="container reveal">
-
-<div class="photo-card">
-<img src="sample/XV_Gallery_02.png" alt="Quinceañera">
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     ITINERARIO
-================================ -->
-
-<section class="itinerary">
-
-<div class="container reveal">
-
-<div class="section-label">
-La celebración
-</div>
-
-<h2 class="section-title">
-Itinerario
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-info">
-Iglesia
-</div>
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-time">
-6:00 PM
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-time">
-7:30 PM
-</div>
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-info">
-Recepción
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-info">
-Coronación y Vals
-</div>
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-time">
-8:00 PM
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-time">
-9:00 PM
-</div>
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-info">
-Cena
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-info">
-Fiesta
-</div>
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-time">
-10:00 PM
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     UBICACIONES
-================================ -->
-
-<section class="locations">
-
-<div class="container reveal">
-
-<div class="section-label">
-Dónde nos vemos
-</div>
-
-<h2 class="section-title">
-Ubicaciones
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="location-grid">
-
-<!-- CEREMONIA -->
-
-<div class="location-card">
-
-<h3>
-La Ceremonia
-</h3>
-
-<p>
-Catedral de Nuestra Señora de la Soledad de Acapulco
-</p>
-
-<button
-class="button open-map"
-data-title="La Ceremonia"
-data-address="Catedral de Nuestra Señora de la Soledad de Acapulco"
-data-map="https://maps.google.com/maps?q=Catedral%20de%20Nuestra%20Se%C3%B1ora%20de%20la%20Soledad%20de%20Acapulco&z=16&output=embed"
-data-link="https://maps.app.goo.gl/CtFyNfacjFQik2Vo7">
-
-Ver ubicación
-
-</button>
-
-</div>
-
-<!-- RECEPCIÓN -->
-
-<div class="location-card">
-
-<h3>
-La Recepción
-</h3>
-
-<p>
-Salón de Eventos “La Cartuja”
-</p>
-
-<button
-class="button open-map"
-data-title="La Recepción"
-data-address="Salón de Eventos La Cartuja"
-data-map="https://maps.google.com/maps?q=Salon%20de%20Eventos%20La%20Cartuja%20Acapulco&z=16&output=embed"
-data-link="https://maps.app.goo.gl/dxrqDMWRiyYvPoPT8">
-
-Ver ubicación
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     CÓDIGO DE VESTIMENTA
-================================ -->
-
-<section class="dress-code">
-
-<div class="butterfly" style="top:12%;right:10%;">🦋</div>
-
-<div class="container reveal">
-
-<div class="section-label">
-Dress Code
-</div>
-
-<h2 class="section-title">
-Código de Vestimenta
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="dress-grid">
-
-<div class="dress-item">
-
-<span>✧</span>
-
-<strong>
-Mujeres
-</strong>
-
-<p>
-Vestido largo
-</p>
-
-</div>
-
-<div class="dress-item">
-
-<span>✦</span>
-
-<strong>
-Hombres
-</strong>
-
-<p>
-Traje completo
-</p>
-
-</div>
-
-</div>
-
-<div class="section-label" style="margin-top:40px;">
-Paleta de colores
-</div>
-
-<div class="palette">
-
-<div class="color-item">
-
-<div class="color-circle" style="background:#071d4f;"></div>
-
-Azul Navy
-
-</div>
-
-<div class="color-item">
-
-<div class="color-circle" style="background:#174eb5;"></div>
-
-Azul Royal
-
-</div>
-
-<div class="color-item">
-
-<div class="color-circle" style="background:#caa55b;"></div>
-
-Dorado
-
-</div>
-
-<div class="color-item">
-
-<div class="color-circle" style="background:#ffffff;"></div>
-
-Blanco
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     MESA DE REGALOS
-================================ -->
-
-<section class="gifts">
-
-<div class="container reveal">
-
-<div class="section-label">
-Mesa de Regalos
-</div>
-
-<h2 class="section-title">
-Un detalle con cariño
-</h2>
-
-<div class="gold-line"></div>
-
-<p class="text">
-¡Que me acompañes es lo más importante! Y si está en tu disposición realizar una muestra de cariño, ¡estaré muy agradecida!
-</p>
-
-<div class="gift-buttons">
-
-<a
-class="button gold"
-href="https://www.amazon.com.mx"
-target="_blank">
-
-Amazon
-
-</a>
-
-<a
-class="button"
-href="https://mesaderegalos.liverpool.com.mx/milistaderegalos"
-target="_blank">
-
-Liverpool
-
-</a>
-
-<button
-class="button outline"
-id="transferButton">
-
-Realizar transferencia
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     LLUVIA DE SOBRES
-================================ -->
-
-<section class="envelopes">
-
-<div class="container reveal">
-
-<div class="section-label">
-Una hermosa tradición
-</div>
-
-<h2 class="section-title">
-Lluvia de Sobres
-</h2>
-
-<div class="gold-line"></div>
-
-<p class="text">
-La lluvia de sobres es la tradición de regalar dinero en efectivo en un sobre el día del evento.
-</p>
-
-<div class="gold-line"></div>
-
-<p class="text">
-¡Mi mejor regalo será compartir contigo el día más feliz de mi vida!
-</p>
-
-</div>
-
-</section>
-
-<!-- ================================
-     GALERÍA AUTOMÁTICA
-================================ -->
-
-<section class="gallery">
-
-<div class="butterfly" style="top:8%;left:8%;">🦋</div>
-<div class="butterfly" style="bottom:10%;right:8%;">🦋</div>
-
-<div class="container reveal">
-
-<div class="section-label">
-Momentos especiales
-</div>
-
-<h2 class="section-title">
-Mi Historia
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="slider">
-
-<div class="slides">
-
-<div class="slide active">
-<img src="sample/XV_Gallery_03.png" alt="Galería XV 1">
-</div>
-
-<div class="slide">
-<img src="sample/XV_Gallery_04.png" alt="Galería XV 2">
-</div>
-
-<div class="slide">
-<img src="sample/XV_Gallery_05.png" alt="Galería XV 3">
-</div>
-
-<div class="slide">
-<img src="sample/XV_Gallery_09_Family.png" alt="Familia">
-</div>
-
-</div>
-
-<div class="slider-controls">
-
-<button class="slider-btn" id="prevSlide">
-←
-</button>
-
-<div class="dots">
-
-<span class="dot active"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-
-</div>
-
-<button class="slider-btn" id="nextSlide">
-→
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     RSVP
-================================ -->
-
-<section class="rsvp">
-
-<div class="container reveal">
-
-<div class="section-label">
-Confirma tu asistencia
-</div>
-
-<h2 class="section-title">
-¡Tu asistencia me hará muy feliz!
-</h2>
-
-<div class="gold-line"></div>
-
-<div class="rsvp-message">
-
-<p class="text">
-Para una mejor organización del evento, te pido respetar el número de pases asignados.
-</p>
-
-<p class="text" style="margin-top:18px;">
-<strong>
-Confirma tu asistencia antes del 15 de enero de 2027.
-</strong>
-</p>
-
-</div>
-
-<div class="tally-wrapper">
-
-<iframe
-src="https://tally.so/embed/japAOR?alignLeft=1&hideTitle=1&transparentBackground=1"
-loading="lazy"
-title="Confirmación de asistencia">
-</iframe>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     CONTACTO MAMÁ Y PAPÁ
-================================ -->
-
-<section class="contact-section">
-
-<div class="container reveal">
-
-<div class="section-label">
-Estamos para ayudarte
-</div>
-
-<h2 class="section-title">
-¿Alguna duda?
-</h2>
-
-<div class="gold-line"></div>
-
-<p class="text">
-Cualquier duda o comentario que tengas sobre mi celebración, por favor no dudes en ponerte en contacto con nosotros.
-</p>
-
-<div class="contact-grid">
-
-<!-- MAMÁ -->
-
-<div class="contact-card">
-
-<div class="contact-photo">
-<img src="sample/XV_Gallery_07_Mom.png" alt="Quinceañera con mamá">
-</div>
-
-<h3>
-Confirmar con Mamá
-</h3>
-
-<a
-class="button"
-href="https://wa.link/631flf"
-target="_blank">
-
-RSVP Mamá
-
-</a>
-
-</div>
-
-<!-- PAPÁ -->
-
-<div class="contact-card">
-
-<div class="contact-photo">
-<img src="sample/XV_Gallery_06_Dad.png" alt="Quinceañera con papá">
-</div>
-
-<h3>
-Confirmar con Papá
-</h3>
-
-<a
-class="button"
-href="https://wa.link/631flf"
-target="_blank">
-
-RSVP Papá
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================================
-     FINAL
-================================ -->
-
-<section class="final">
-
-<div class="butterfly" style="top:15%;left:10%;">🦋</div>
-<div class="butterfly" style="bottom:15%;right:12%;">🦋</div>
-
-<div class="final-content reveal">
-
-<h2>
-¡Te Esperamos!
-</h2>
-
-<div class="hero-divider"></div>
-
-<p>
-Tu presencia es lo que hará perfecto este momento; me haría muy feliz contar con tu compañía en la celebración de mis XV años.
-</p>
-
-</div>
-
-</section>
-
-<!-- ================================
-     FOOTER BOREAL
-================================ -->
-
-<footer class="footer">
-
-<a
-class="boreal-button"
-href="https://borealdigitaldesign.github.io/"
-target="_blank">
-
-✦ Invitación creada por Boreal Digital Design
-
-</a>
-
-</footer>
-
-<!-- ================================
-     MODAL TRANSFERENCIA
-================================ -->
-
-<div class="modal" id="transferModal">
-
-<div class="modal-box">
-
-<button class="close-modal" id="closeModal">
-×
-</button>
-
-<div class="section-label">
-Mesa de Regalos
-</div>
-
-<h3>
-Realizar Transferencia
-</h3>
-
-<p>
-Si deseas realizar una transferencia como muestra de cariño, puedes utilizar los siguientes datos:
-</p>
-
-<div class="transfer-info">
-
-<strong>Banco:</strong> Próximamente<br>
-
-<strong>Nombre:</strong> Próximamente<br>
-
-<strong>Cuenta / CLABE:</strong> Próximamente
-
-</div>
-
-<p style="font-size:.85rem;line-height:1.7;">
-¡Muchas gracias por tu cariño y por ser parte de este momento tan especial!
-</p>
-
-</div>
-
-</div>
-
-<!-- ================================
-     MODAL MAPA
-================================ -->
-
-<div class="modal" id="mapModal">
-
-<div class="modal-box map-modal-box">
-
-<button class="close-modal" id="closeMapModal">
-×
-</button>
-
-<div class="map-header">
-
-<h3 id="mapTitle">
-Ubicación
-</h3>
-
-<p id="mapAddress"></p>
-
-</div>
-
-<div class="map-container">
-
-<iframe
-id="mapFrame"
-src=""
-loading="lazy"
-allowfullscreen>
-</iframe>
-
-</div>
-
-<div class="map-actions">
-
-<a
-class="button"
-id="mapExternalLink"
-href="#"
-target="_blank">
-
-Abrir en Google Maps
-
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ================================
-     JAVASCRIPT
-================================ -->
 
 <script>
 
-/* ================================
-   ANIMACIONES AL HACER SCROLL
-================================ */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-const reveals = document.querySelectorAll('.reveal');
+const envelopeIntro =
+  document.getElementById("envelopeIntro");
 
-const revealObserver = new IntersectionObserver(entries => {
+const envelopeSeal =
+  document.getElementById("envelopeSeal");
 
-entries.forEach(entry => {
+const mainInvitation =
+  document.getElementById("mainInvitation");
 
-if (entry.isIntersecting) {
+const music =
+  document.getElementById("weddingMusic");
 
-entry.target.classList.add('show');
+const musicButton =
+  document.getElementById("musicButton");
 
-revealObserver.unobserve(entry.target);
+const specialPages =
+  document.querySelectorAll(".special-page");
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+function openEnvelope(){
+
+  envelopeIntro.classList.add("opening");
+
+  startMusic();
+
+
+  setTimeout(function(){
+
+    mainInvitation.style.display="block";
+
+    envelopeIntro.classList.add("hide");
+
+
+    window.scrollTo({
+      top:0,
+      behavior:"auto"
+    });
+
+
+    const cover =
+      document.querySelector(".cover-page");
+
+
+    if(cover){
+
+      setTimeout(function(){
+
+        cover.classList.add("cover-visible");
+
+      },80);
+
+    }
+
+
+    activateScrollAnimations();
+
+  },1800);
 
 }
 
-});
 
-},{
-threshold:0.12
-});
+envelopeSeal.addEventListener(
+  "click",
+  openEnvelope
+);
 
-reveals.forEach(item => {
-revealObserver.observe(item);
-});
 
-/* ================================
-   MÚSICA
-================================ */
+/* =========================================================
+   UNIVERSAL SCROLL REVEAL
+========================================================= */
 
-const backgroundMusic = document.getElementById('backgroundMusic');
-const musicButton = document.getElementById('musicButton');
-const musicIcon = document.getElementById('musicIcon');
+function activateScrollAnimations(){
 
-let musicPlaying = false;
+  const sections =
+    document.querySelectorAll(".reveal-target");
 
-musicButton.addEventListener('click', () => {
 
-if (musicPlaying) {
+  sections.forEach(function(section){
 
-backgroundMusic.pause();
+    section.classList.add("reveal-page");
 
-musicButton.classList.remove('playing');
+  });
 
-musicIcon.textContent = '♫';
 
-musicButton.setAttribute('aria-label','Activar música');
+  setTimeout(
+    checkVisibleSections,
+    100
+  );
 
-} else {
 
-backgroundMusic.play();
+  window.addEventListener(
+    "scroll",
+    checkVisibleSections,
+    {passive:true}
+  );
 
-musicButton.classList.add('playing');
 
-musicIcon.textContent = '❚❚';
-
-musicButton.setAttribute('aria-label','Pausar música');
+  window.addEventListener(
+    "resize",
+    checkVisibleSections
+  );
 
 }
 
-musicPlaying = !musicPlaying;
 
-});
+function checkVisibleSections(){
 
-/* ================================
+  const sections =
+    document.querySelectorAll(
+      ".reveal-target.reveal-page:not(.visible)"
+    );
+
+
+  sections.forEach(function(section){
+
+    const rect =
+      section.getBoundingClientRect();
+
+
+    const triggerPoint =
+      window.innerHeight*.88;
+
+
+    if(
+      rect.top<triggerPoint &&
+      rect.bottom>0
+    ){
+
+      section.classList.add("visible");
+
+    }
+
+  });
+
+}
+
+
+/* =========================================================
    COUNTDOWN
-================================ */
+========================================================= */
 
-const eventDate = new Date('January 30, 2027 18:00:00').getTime();
+const eventDate =
+  new Date(
+    "2027-01-30T00:00:00-06:00"
+  ).getTime();
 
-function updateCountdown() {
 
-const now = new Date().getTime();
+function updateCountdown(){
 
-const distance = eventDate - now;
+  const now =
+    Date.now();
 
-if (distance <= 0) {
 
-document.getElementById('days').textContent = '00';
-document.getElementById('hours').textContent = '00';
-document.getElementById('minutes').textContent = '00';
-document.getElementById('seconds').textContent = '00';
+  const difference =
+    eventDate-now;
 
-return;
+
+  if(difference<=0){
+
+    document.getElementById("days").textContent="0";
+    document.getElementById("hours").textContent="0";
+    document.getElementById("minutes").textContent="0";
+    document.getElementById("seconds").textContent="0";
+
+    return;
+
+  }
+
+
+  const days =
+    Math.floor(
+      difference/
+      (1000*60*60*24)
+    );
+
+
+  const hours =
+    Math.floor(
+      (
+        difference%
+        (1000*60*60*24)
+      )/
+      (1000*60*60)
+    );
+
+
+  const minutes =
+    Math.floor(
+      (
+        difference%
+        (1000*60*60)
+      )/
+      (1000*60)
+    );
+
+
+  const seconds =
+    Math.floor(
+      (
+        difference%
+        (1000*60)
+      )/
+      1000
+    );
+
+
+  document.getElementById("days").textContent =
+    days;
+
+  document.getElementById("hours").textContent =
+    hours;
+
+  document.getElementById("minutes").textContent =
+    minutes;
+
+  document.getElementById("seconds").textContent =
+    seconds;
 
 }
 
-const days = Math.floor(
-distance / (1000 * 60 * 60 * 24)
-);
-
-const hours = Math.floor(
-(distance % (1000 * 60 * 60 * 24)) /
-(1000 * 60 * 60)
-);
-
-const minutes = Math.floor(
-(distance % (1000 * 60 * 60)) /
-(1000 * 60)
-);
-
-const seconds = Math.floor(
-(distance % (1000 * 60)) /
-1000
-);
-
-document.getElementById('days').textContent =
-String(days).padStart(2,'0');
-
-document.getElementById('hours').textContent =
-String(hours).padStart(2,'0');
-
-document.getElementById('minutes').textContent =
-String(minutes).padStart(2,'0');
-
-document.getElementById('seconds').textContent =
-String(seconds).padStart(2,'0');
-
-}
 
 updateCountdown();
 
-setInterval(updateCountdown,1000);
-
-/* ================================
-   AGREGAR AL CALENDARIO
-================================ */
-
-const calendarButton = document.getElementById('calendarButton');
-
-calendarButton.addEventListener('click', () => {
-
-const calendarContent = [
-
-'BEGIN:VCALENDAR',
-
-'VERSION:2.0',
-
-'BEGIN:VEVENT',
-
-'DTSTART:20270130T180000',
-
-'DTEND:20270131T010000',
-
-'SUMMARY:XV Años de Ana Sofía',
-
-'DESCRIPTION:Celebración de los XV Años de Ana Sofía',
-
-'LOCATION:Catedral de Nuestra Señora de la Soledad de Acapulco',
-
-'END:VEVENT',
-
-'END:VCALENDAR'
-
-].join('\r\n');
-
-const blob = new Blob(
-[calendarContent],
-{
-type:'text/calendar;charset=utf-8'
-}
+setInterval(
+  updateCountdown,
+  1000
 );
 
-const url = URL.createObjectURL(blob);
 
-const link = document.createElement('a');
+/* =========================================================
+   SPECIAL PAGES
+========================================================= */
 
-link.href = url;
+function showMainInvitation(returnId){
 
-link.download = 'Mis_XV_Anios_Ana_Sofia.ics';
+  mainInvitation.style.display="block";
 
-document.body.appendChild(link);
 
-link.click();
+  specialPages.forEach(function(page){
 
-document.body.removeChild(link);
+    page.classList.remove("active");
 
-URL.revokeObjectURL(url);
+  });
 
-});
 
-/* ================================
-   PADRINOS DESPLEGABLES
-================================ */
+  setTimeout(function(){
 
-const padrinoItems = document.querySelectorAll('.padrino-item');
+    const target =
+      document.getElementById(returnId);
 
-padrinoItems.forEach(item => {
 
-const toggle = item.querySelector('.padrino-toggle');
+    if(target){
 
-toggle.addEventListener('click', () => {
+      target.classList.add("visible");
 
-const isActive = item.classList.contains('active');
+      target.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
 
-/* Cierra los demás */
+    }
 
-padrinoItems.forEach(otherItem => {
-otherItem.classList.remove('active');
-});
-
-/* Abre el seleccionado */
-
-if (!isActive) {
-item.classList.add('active');
-}
-
-});
-
-});
-
-/* ================================
-   GALERÍA AUTOMÁTICA
-================================ */
-
-const slides = document.querySelectorAll('.slide');
-
-const dots = document.querySelectorAll('.dot');
-
-const nextSlide = document.getElementById('nextSlide');
-
-const prevSlide = document.getElementById('prevSlide');
-
-let currentSlide = 0;
-
-let autoSlide;
-
-function showSlide(index) {
-
-slides[currentSlide].classList.remove('active');
-
-dots[currentSlide].classList.remove('active');
-
-currentSlide =
-(index + slides.length) % slides.length;
-
-slides[currentSlide].classList.add('active');
-
-dots[currentSlide].classList.add('active');
+  },80);
 
 }
 
-function next() {
 
-showSlide(currentSlide + 1);
+function showSpecialPage(pageId){
 
-}
+  mainInvitation.style.display="none";
 
-function previous() {
 
-showSlide(currentSlide - 1);
+  specialPages.forEach(function(page){
 
-}
+    page.classList.remove("active");
 
-function startAutoSlide() {
+  });
 
-clearInterval(autoSlide);
 
-autoSlide = setInterval(next,5000);
+  const selectedPage =
+    document.getElementById(pageId);
 
-}
 
-nextSlide.addEventListener('click', () => {
+  if(selectedPage){
 
-next();
+    selectedPage.classList.add("active");
 
-startAutoSlide();
 
-});
+    window.scrollTo({
+      top:0,
+      behavior:"auto"
+    });
 
-prevSlide.addEventListener('click', () => {
-
-previous();
-
-startAutoSlide();
-
-});
-
-dots.forEach((dot,index) => {
-
-dot.addEventListener('click', () => {
-
-showSlide(index);
-
-startAutoSlide();
-
-});
-
-});
-
-startAutoSlide();
-
-/* ================================
-   MODAL TRANSFERENCIA
-================================ */
-
-const transferButton =
-document.getElementById('transferButton');
-
-const transferModal =
-document.getElementById('transferModal');
-
-const closeModal =
-document.getElementById('closeModal');
-
-transferButton.addEventListener('click', () => {
-
-transferModal.classList.add('show');
-
-document.body.style.overflow = 'hidden';
-
-});
-
-function closeTransferModal() {
-
-transferModal.classList.remove('show');
-
-document.body.style.overflow = '';
+  }
 
 }
 
-closeModal.addEventListener(
-'click',
-closeTransferModal
+
+/* =========================================================
+   SPECIAL LINKS
+========================================================= */
+
+document
+.querySelectorAll(".special-link")
+.forEach(function(link){
+
+  link.addEventListener(
+    "click",
+    function(event){
+
+      event.preventDefault();
+
+
+      const pageId =
+        this.getAttribute("data-page");
+
+
+      history.pushState(
+        null,
+        "",
+        "#"+pageId
+      );
+
+
+      showSpecialPage(pageId);
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   BACK TO MAIN INVITATION
+========================================================= */
+
+document
+.querySelectorAll(".back-to-main")
+.forEach(function(link){
+
+  link.addEventListener(
+    "click",
+    function(event){
+
+      event.preventDefault();
+
+
+      const returnId =
+        this.getAttribute("data-return");
+
+
+      history.pushState(
+        null,
+        "",
+        "#"+returnId
+      );
+
+
+      showMainInvitation(returnId);
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   HASH NAVIGATION
+========================================================= */
+
+function loadPageFromHash(){
+
+  const hash =
+    window.location.hash.replace("#","");
+
+
+  const specialPageIds = [
+    "church-reception",
+    "godparents",
+    "court-honor",
+    "timeline",
+    "dress-code",
+    "accommodations"
+  ];
+
+
+  if(
+    specialPageIds.includes(hash)
+  ){
+
+    envelopeIntro.classList.add("hide");
+
+    mainInvitation.style.display="none";
+
+    showSpecialPage(hash);
+
+    return;
+
+  }
+
+
+  if(hash){
+
+    envelopeIntro.classList.add("hide");
+
+    mainInvitation.style.display="block";
+
+
+    specialPages.forEach(function(page){
+
+      page.classList.remove("active");
+
+    });
+
+
+    setTimeout(function(){
+
+      const target =
+        document.getElementById(hash);
+
+
+      if(target){
+
+        target.classList.add("visible");
+
+        target.scrollIntoView({
+          behavior:"auto",
+          block:"start"
+        });
+
+      }
+
+
+      activateScrollAnimations();
+
+    },100);
+
+  }
+
+}
+
+
+window.addEventListener(
+  "popstate",
+  loadPageFromHash
 );
 
-transferModal.addEventListener('click', event => {
 
-if (event.target === transferModal) {
+window.addEventListener(
+  "hashchange",
+  loadPageFromHash
+);
 
-closeTransferModal();
+
+if(window.location.hash){
+
+  loadPageFromHash();
 
 }
 
+
+/* =========================================================
+   NOTE MODALS
+========================================================= */
+
+const noteModalMap = {
+
+  unplugged:
+    document.getElementById("unpluggedModal"),
+
+  adults:
+    document.getElementById("adultsModal")
+
+};
+
+
+document
+.querySelectorAll(".note-popup-trigger")
+.forEach(function(button){
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      const noteType =
+        this.getAttribute("data-note");
+
+
+      const modal =
+        noteModalMap[noteType];
+
+
+      if(!modal){
+        return;
+      }
+
+
+      modal.classList.add("active");
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.style.overflow="hidden";
+
+    }
+  );
+
 });
 
-/* ================================
-   MODAL UBICACIONES / MAPAS
-================================ */
+
+function closeNoteModal(modal){
+
+  if(!modal){
+    return;
+  }
+
+
+  modal.classList.remove("active");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.style.overflow="";
+
+}
+
+
+document
+.querySelectorAll("[data-close-note]")
+.forEach(function(button){
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      const modalId =
+        this.getAttribute("data-close-note");
+
+
+      closeNoteModal(
+        document.getElementById(modalId)
+      );
+
+    }
+  );
+
+});
+
+
+Object.values(noteModalMap)
+.forEach(function(modal){
+
+  modal.addEventListener(
+    "click",
+    function(event){
+
+      if(event.target===modal){
+
+        closeNoteModal(modal);
+
+      }
+
+    }
+  );
+
+});
+
+
+/* =========================================================
+   BANK DETAILS MODAL
+========================================================= */
+
+const bankModal =
+  document.getElementById("bankModal");
+
+const openBankModal =
+  document.getElementById("openBankModal");
+
+const closeBankModal =
+  document.getElementById("closeBankModal");
+
+
+openBankModal.addEventListener(
+  "click",
+  function(){
+
+    bankModal.classList.add("active");
+
+    bankModal.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+
+    document.body.style.overflow="hidden";
+
+  }
+);
+
+
+function closeBankDetails(){
+
+  bankModal.classList.remove("active");
+
+  bankModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.style.overflow="";
+
+}
+
+
+closeBankModal.addEventListener(
+  "click",
+  closeBankDetails
+);
+
+
+bankModal.addEventListener(
+  "click",
+  function(event){
+
+    if(event.target===bankModal){
+
+      closeBankDetails();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   MAP POPUP
+========================================================= */
 
 const mapModal =
-document.getElementById('mapModal');
+  document.getElementById("mapModal");
 
-const mapFrame =
-document.getElementById('mapFrame');
+const mapModalClose =
+  document.getElementById("mapModalClose");
 
-const mapTitle =
-document.getElementById('mapTitle');
+const mapModalTitle =
+  document.getElementById("mapModalTitle");
 
-const mapAddress =
-document.getElementById('mapAddress');
+const mapModalDescription =
+  document.getElementById("mapModalDescription");
 
-const mapExternalLink =
-document.getElementById('mapExternalLink');
+const mapPreview =
+  document.getElementById("mapPreview");
 
-const closeMapModal =
-document.getElementById('closeMapModal');
+const mapOpenButton =
+  document.getElementById("mapOpenButton");
 
-const mapButtons =
-document.querySelectorAll('.open-map');
 
-mapButtons.forEach(button => {
+document
+.querySelectorAll(".map-popup-trigger")
+.forEach(function(button){
 
-button.addEventListener('click', () => {
+  button.addEventListener(
+    "click",
+    function(){
 
-const title = button.dataset.title;
+      mapModalTitle.textContent =
+        this.getAttribute("data-title");
 
-const address = button.dataset.address;
 
-const map = button.dataset.map;
+      mapModalDescription.textContent =
+        this.getAttribute("data-description");
 
-const link = button.dataset.link;
 
-mapTitle.textContent = title;
+      const mapUrl =
+        this.getAttribute("data-map");
 
-mapAddress.textContent = address;
 
-mapFrame.src = map;
+      const directionsUrl =
+        this.getAttribute("data-url");
 
-mapExternalLink.href = link;
 
-mapModal.classList.add('show');
+      if(mapUrl){
 
-document.body.style.overflow = 'hidden';
+        mapPreview.src =
+          mapUrl;
+
+      }else{
+
+        mapPreview.removeAttribute("src");
+
+      }
+
+
+      mapOpenButton.href =
+        directionsUrl || "#";
+
+
+      mapModal.classList.add("active");
+
+      mapModal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+
+      document.body.style.overflow="hidden";
+
+    }
+  );
 
 });
 
-});
 
-function closeMap() {
+function closeMapModal(){
 
-mapModal.classList.remove('show');
+  mapModal.classList.remove("active");
 
-setTimeout(() => {
+  mapModal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
 
-mapFrame.src = '';
 
-},300);
+  mapPreview.src="";
 
-document.body.style.overflow = '';
+
+  document.body.style.overflow="";
 
 }
 
-closeMapModal.addEventListener(
-'click',
-closeMap
+
+mapModalClose.addEventListener(
+  "click",
+  closeMapModal
 );
 
-mapModal.addEventListener('click', event => {
 
-if (event.target === mapModal) {
+mapModal.addEventListener(
+  "click",
+  function(event){
 
-closeMap();
+    if(event.target===mapModal){
+
+      closeMapModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key!=="Escape"){
+      return;
+    }
+
+
+    Object.values(noteModalMap)
+    .forEach(function(modal){
+
+      if(modal.classList.contains("active")){
+
+        closeNoteModal(modal);
+
+      }
+
+    });
+
+
+    if(bankModal.classList.contains("active")){
+
+      closeBankDetails();
+
+    }
+
+
+    if(mapModal.classList.contains("active")){
+
+      closeMapModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+let musicPlaying=false;
+
+
+function updateMusicButton(){
+
+  if(musicPlaying){
+
+    musicButton.textContent="⏸";
+
+    musicButton.setAttribute(
+      "aria-label",
+      "Pause music"
+    );
+
+  }else{
+
+    musicButton.textContent="🎵";
+
+    musicButton.setAttribute(
+      "aria-label",
+      "Play music"
+    );
+
+  }
 
 }
 
-});
 
-/* ================================
-   TECLA ESC
-================================ */
+function startMusic(){
 
-document.addEventListener('keydown', event => {
+  music.play()
 
-if (event.key === 'Escape') {
+  .then(function(){
 
-closeTransferModal();
+    musicPlaying=true;
 
-closeMap();
+    updateMusicButton();
+
+  })
+
+  .catch(function(){
+
+    musicPlaying=false;
+
+    updateMusicButton();
+
+  });
 
 }
 
-});
+
+musicButton.addEventListener(
+  "click",
+  function(){
+
+    if(music.paused){
+
+      startMusic();
+
+    }else{
+
+      music.pause();
+
+      musicPlaying=false;
+
+      updateMusicButton();
+
+    }
+
+  }
+);
+
+
+updateMusicButton();
 
 </script>
 
